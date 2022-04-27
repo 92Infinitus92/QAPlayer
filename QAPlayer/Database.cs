@@ -7,35 +7,32 @@ using System.Threading.Tasks;
 
 namespace QAPlayer
 {
-    public class Database
+    internal class Database
     {
-        private string connetionString;
+        public string connetionString = @"data source=192.168.180.131;initial catalog=WMPlayer;user id=sa;password=Devos#!3@";
 
-        //    public string ConnectionString
-        //    {
-        //        //get { }
-        //        //set { ConnectionString = value; }
-        //    }
 
-        //}
 
-        //public void Connect(string connectionString)
-        //{
-        //    SqlConnection cnn;
-        //    connectionString = @"";
-        //    cnn = new SqlConnection(connectionString);
-        //    cnn.Open();
-        //}
+        internal SqlConnection Connect()
+        {
+            SqlConnection cnn;
+            cnn = new SqlConnection(this.connetionString);
+            cnn.Open();
+            return cnn;
+        }
 
-        //private void PushToBase(string PCName, double elapsedTime, DateTime date)
-        //{
-        //    String st = "INSERT INTO Listened Time(PCName, Elapsed Time, Date) values (@PCName, @elapsedTime, @date)";
-        //    //SqlCommand cmd = new SqlCommand(st, cnn);
-        //    //cmd.Parameters.AddWithValue("@PCName", PCName);
-        //    //cmd.Parameters.AddWithValue("@elapsed Time", elapsedTime);
-        //    //cmd.Parameters.AddWithValue("@date", date);
-        //    //cmd.ExecuteNonQuery();
-        //}
+        internal void PushToBase(string PCName, double elapsedTime, string date, SqlConnection cnn)
+        {
+            elapsedTime = Math.Round(elapsedTime, 2);
+            String st = "INSERT INTO TimeWatched(PCName, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
+            SqlCommand cmd = new SqlCommand(st, cnn);
+            cmd.Parameters.AddWithValue("@PCName", PCName);
+            cmd.Parameters.AddWithValue("@elapsedTime", elapsedTime);
+            cmd.Parameters.AddWithValue("@date", date);
+            cmd.ExecuteNonQuery();
+        }
+
     }
 }
+
 

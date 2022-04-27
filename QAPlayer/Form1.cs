@@ -22,125 +22,130 @@ namespace QAPlayer
         public bool isPlaying = true;
         Database db = new Database();
 
-
         public Form1()
         {
             InitializeComponent();
 
+            //allows drag and drop to the form
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
+
         }
 
-        private void bunifuButtonNowPlaying_Click(object sender, EventArgs e)
-        {
-            indicator.Top = btnNowPlaying.Top + 10;
-            bunifuPages1.SetPage(0);
-        }
-
-        private void bunifuButtonExplore_Click(object sender, EventArgs e)
-        {
-            indicator.Top = btnExplore.Top + 18;
-            bunifuPages1.SetPage(1);
-        }
-
+        //exit button
         private void btnClose_Click(object sender, EventArgs e)
         {
+            endTime = DateTime.Now;
+            CalculateTime(startTime, endTime);
             Environment.Exit(0);
         }
 
+        //Here we check that the dragged file is in supported extension
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.All;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Link;
+            }
         }
 
+
+        //Implements the drag and drop autoplay function
         void Form1_DragDrop(object sender, DragEventArgs e)
         {
-            string[] fileNames = e.Data.GetData(DataFormats.FileDrop) as string[];
-            if (fileNames != null && fileNames.Length != 0)
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-
+                var file = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string URL = file[0];
+                this.player.URL = URL;
+                startTime = DateTime.Now;
             }
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            foreach (var item in openFileDialog1.FileNames)
-            {
-                FileInfo fi = new FileInfo(item);
-
-                DialogResult result = openFileDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    player.Ctlcontrols.play();
-                }
-            }
-        }
-
+        //get's the file name and source
         private void Form1_Load(object sender, EventArgs e)
         {
             listFile.ValueMember = "Path";
             listFile.DisplayMember = "FileName";
         }
 
+        //plays the mediafile 
         private void listFile_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             MediaFile file = listFile.SelectedItem as MediaFile;
+            
             if (file != null)
             {
+                
                 player.URL = file.Path;
                 player.Ctlcontrols.play();
                 startTime = DateTime.Now;
             }
+
+            
+
+
         }
 
+        //implementation of adding files to a list
         private void btnAddFiles_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Multiselect = true, ValidateNames = true, Filter = "WAV|*.wav|MP4|*.mp4|WMV|*.wmv|MP3|*.mp3|MKV|*.mkv" })
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    List<MediaFile> files = new List<MediaFile>();
-                    foreach (string fileName in ofd.FileNames)
-                    {
-                        FileInfo fi = new FileInfo(fileName);
-                        files.Add(new MediaFile() { FileName = Path.GetFileNameWithoutExtension(fi.FullName), Path = fi.FullName });
-                    }
-                    listFile.DataSource = files;
-                }
+            DialogResult result = openFileDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                player.URL = openFileDialog1.FileName;
+            }
+           
         }
 
-
+        //the main method for the backbone requirement of tracking listenedTime
         private void CalculateTime(DateTime startTime, DateTime endTime)
         {
             double elapsedTime = 0;
             TimeSpan inSeconds = endTime - startTime;
             double totalTime = inSeconds.TotalSeconds;
 
-            //var cnn = ;
+            var cnn = db.Connect();
             TimeSpan time = TimeSpan.FromSeconds(elapsedTime);
             string date = endTime.ToString("dd-MM-yyyy");
-            //db.PushToBase(PCName, totalTime, date, cnn);
+            db.PushToBase(PCName, totalTime, date, cnn);
             inSeconds = TimeSpan.Zero;
         }
 
+        //pause button
         private void btnPause_Click(object sender, EventArgs e)
         {
             player.Ctlcontrols.pause();
+            endTime = DateTime.Now;
+            CalculateTime(startTime, endTime);
         }
 
+        //play button
         private void btnPlay_Click(object sender, EventArgs e)
         {
             player.Ctlcontrols.play();
+            startTime = DateTime.Now;
         }
 
+        //to do!!!
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = player.Ctlcontrols.currentPositionString;
 
             slider.Value = (int)player.Ctlcontrols.currentPosition;
+
+            if (player.playState == WMPPlayState.wmppsPlaying)
+            {
+                slider.Maximum = (int)player.currentMedia.duration;
+            
+            }
+
         }
 
-        private void spacePauseEvent(object sender, AxWMPLib._WMPOCXEvents_KeyUpEvent e)
+        //to do!!!
+        private void spacePauseEvent(object sender, _WMPOCXEvents_KeyUpEvent e)
         {
             if (player.playState == WMPPlayState.wmppsPlaying)
             {
@@ -159,12 +164,15 @@ namespace QAPlayer
             }
         }
 
+        //when X is pressed the app collects the date and time and pushes it to a method
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             endTime = DateTime.Now;
             CalculateTime(startTime, endTime);
         }
 
+
+        //detects when the player status is changed and collects datetime data
         private void player_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent e)
         {
             bunifuLabel2.Text = player.status;
@@ -174,13 +182,41 @@ namespace QAPlayer
             if (player.playState == WMPPlayState.wmppsPaused)
             {
                 endTime = DateTime.Now;
-                //CalculateTime(startTime, endTime);
+                CalculateTime(startTime, endTime);
             }
 
             if (player.playState == WMPPlayState.wmppsPlaying)
             {
                 startTime = DateTime.Now;
             }
+        }
+
+        private void btnForward_Click(object sender, EventArgs e)
+        {
+            player.Ctlcontrols.fastForward();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            lblVolume.Text = "Volume: " + volumeControl2.Value.ToString() + "%";
+        }
+
+        private void volumeControl2_MouseMove(object sender, MouseEventArgs e)
+        {
+            player.settings.volume = volumeControl2.Value;
+            lblVolume.Text = "Volume: " + volumeControl2.Value.ToString() + "%";
+        }
+
+        private void slider_MouseClick(object sender, MouseEventArgs e)
+        {
+            slider.AllowIncrementalClickMoves = false;
+            player.Ctlcontrols.currentPosition = slider.Value;
+        }
+
+        private void slider_LocationChanged(object sender, EventArgs e)
+        {
+            player.Ctlcontrols.currentPosition = slider.Value;
+
         }
     }
 }
