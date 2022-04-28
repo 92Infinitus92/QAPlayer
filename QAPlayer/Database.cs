@@ -23,15 +23,21 @@ namespace QAPlayer
 
         internal void PushToBase(string PCName, double elapsedTime, string date, SqlConnection cnn)
         {
-            elapsedTime = Math.Round(elapsedTime, 2);
-            String st = "INSERT INTO TimeWatched(PCName, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
-            SqlCommand cmd = new SqlCommand(st, cnn);
-            cmd.Parameters.AddWithValue("@PCName", PCName);
-            cmd.Parameters.AddWithValue("@elapsedTime", elapsedTime);
-            cmd.Parameters.AddWithValue("@date", date);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                elapsedTime = Math.Round(elapsedTime, 2);
+                String st = "INSERT INTO TimeWatched(PCName, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
+                SqlCommand cmd = new SqlCommand(st, cnn);
+                cmd.Parameters.AddWithValue("@PCName", PCName);
+                cmd.Parameters.AddWithValue("@elapsedTime", elapsedTime);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.ExecuteNonQuery();
+            }
+            catch (ArithmeticException)
+            {
+                throw;
+            }
         }
-
     }
 }
 
