@@ -15,6 +15,17 @@ namespace QAPlayer
 {
     public partial class Form1 : Form
     {
+        public const double zeroPointFive = 0.5;
+        public const double zeroPointSix = 0.6;
+        public const double zeroPointSeven = 0.7;
+        public const double zeroPointEight = 0.8;
+        public const double zeroPointNine = 0.9;
+        public const double one = 1.0;
+        public const double onePointOne = 1.1;
+        public const double onePointTwo = 1.2;
+        public const double onePointThree = 1.3;
+        public const double onePointFour = 1.4;
+        public const double onePointFive = 1.5;
 
         public DateTime startTime;
         public DateTime endTime;
@@ -32,7 +43,6 @@ namespace QAPlayer
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
         }
 
-
         //Here we check that the dragged file is in supported extension
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
@@ -41,7 +51,6 @@ namespace QAPlayer
                 e.Effect = DragDropEffects.Link;
             }
         }
-
 
         //Implements the drag and drop autoplay function
         void Form1_DragDrop(object sender, DragEventArgs e)
@@ -126,7 +135,7 @@ namespace QAPlayer
             bunifuLabel2.Text = player.status;
             imgEqualizer.Enabled = player.status.ToLower().Contains("playing");
 
-            if (player.playState == WMPPlayState.wmppsPaused)
+            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
@@ -186,12 +195,91 @@ namespace QAPlayer
                 if (player.playState == WMPPlayState.wmppsPlaying)
                 {
                     player.Ctlcontrols.pause();
-
                 }
                 else if (player.playState == WMPPlayState.wmppsPaused)
                 {
                     player.Ctlcontrols.play();
                 }
+            }
+        }
+
+        private void trbPlaySpeed_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch (trbPlaySpeed.Value)
+            {
+                case 1:
+                    player.settings.rate = zeroPointFive;
+                    break;
+                case 2:
+                    player.settings.rate = zeroPointSix;
+                    break;
+                case 3:
+                    player.settings.rate = zeroPointSeven;
+                    break;
+                case 4:
+                    player.settings.rate = zeroPointEight;
+                    break;
+                case 5:
+                    player.settings.rate = zeroPointNine;
+                    break;
+                case 6:
+                    player.settings.rate = one;
+                    break;
+                case 7:
+                    player.settings.rate = onePointOne;
+                    break;
+                case 8:
+                    player.settings.rate = onePointTwo;
+                    break;
+                case 9:
+                    player.settings.rate = onePointThree;
+                    break;
+                case 10:
+                    player.settings.rate = onePointFour;
+                    break;
+                case 11:
+                    player.settings.rate = onePointFive;
+                    break;
+            }
+        }
+
+        private void trbPlaySpeed_ValueChanged(object sender, EventArgs e)
+        {
+            switch (trbPlaySpeed.Value)
+            {
+                case 1:
+                    player.settings.rate = zeroPointFive;
+                    break;
+                case 2:
+                    player.settings.rate = zeroPointSix;
+                    break;
+                case 3:
+                    player.settings.rate = zeroPointSeven;
+                    break;
+                case 4:
+                    player.settings.rate = zeroPointEight;
+                    break;
+                case 5:
+                    player.settings.rate = zeroPointNine;
+                    break;
+                case 6:
+                    player.settings.rate = one;
+                    break;
+                case 7:
+                    player.settings.rate = onePointOne;
+                    break;
+                case 8:
+                    player.settings.rate = onePointTwo;
+                    break;
+                case 9:
+                    player.settings.rate = onePointThree;
+                    break;
+                case 10:
+                    player.settings.rate = onePointFour;
+                    break;
+                case 11:
+                    player.settings.rate = onePointFive;
+                    break;
             }
         }
     }

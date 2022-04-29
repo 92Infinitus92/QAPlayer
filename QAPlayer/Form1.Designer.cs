@@ -67,6 +67,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bunifuToolTip1 = new Bunifu.UI.WinForms.BunifuToolTip(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.trbPlaySpeed = new System.Windows.Forms.TrackBar();
             this.panelLeftNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -76,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgEqualizer)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeftNavbar
@@ -132,6 +134,8 @@
             this.btnHelp.AllowAnimations = true;
             this.btnHelp.AllowMouseEffects = true;
             this.btnHelp.AllowToggling = false;
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelp.AnimationSpeed = 200;
             this.btnHelp.AutoGenerateColors = false;
             this.btnHelp.AutoRoundBorders = false;
@@ -226,6 +230,8 @@
             this.btnSettings.AllowAnimations = true;
             this.btnSettings.AllowMouseEffects = true;
             this.btnSettings.AllowToggling = false;
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSettings.AnimationSpeed = 200;
             this.btnSettings.AutoGenerateColors = false;
             this.btnSettings.AutoRoundBorders = false;
@@ -364,7 +370,7 @@
             this.btnNowPlaying.IdleIconLeftImage = null;
             this.btnNowPlaying.IdleIconRightImage = null;
             this.btnNowPlaying.IndicateFocus = true;
-            this.btnNowPlaying.Location = new System.Drawing.Point(68, 145);
+            this.btnNowPlaying.Location = new System.Drawing.Point(42, 140);
             this.btnNowPlaying.Name = "btnNowPlaying";
             this.btnNowPlaying.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnNowPlaying.OnDisabledState.BorderRadius = 1;
@@ -398,7 +404,7 @@
             this.btnNowPlaying.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnNowPlaying.OnPressedState.IconLeftImage = null;
             this.btnNowPlaying.OnPressedState.IconRightImage = null;
-            this.btnNowPlaying.Size = new System.Drawing.Size(129, 43);
+            this.btnNowPlaying.Size = new System.Drawing.Size(120, 43);
             this.btnNowPlaying.TabIndex = 0;
             this.btnNowPlaying.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNowPlaying.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -756,6 +762,9 @@
             // 
             // imgEqualizer
             // 
+            this.imgEqualizer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imgEqualizer.Image = ((System.Drawing.Image)(resources.GetObject("imgEqualizer.Image")));
             this.imgEqualizer.Location = new System.Drawing.Point(88, 57);
             this.imgEqualizer.Name = "imgEqualizer";
@@ -784,6 +793,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Purple;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.trbPlaySpeed);
             this.panel1.Controls.Add(this.lblTotalTime);
             this.panel1.Controls.Add(this.lblVolume);
             this.panel1.Controls.Add(this.volumeControl2);
@@ -824,10 +834,12 @@
             // 
             // lblVolume
             // 
+            this.lblVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVolume.AutoSize = true;
             this.lblVolume.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVolume.ForeColor = System.Drawing.Color.White;
-            this.lblVolume.Location = new System.Drawing.Point(806, 1);
+            this.lblVolume.Location = new System.Drawing.Point(812, 7);
             this.lblVolume.Name = "lblVolume";
             this.lblVolume.Size = new System.Drawing.Size(83, 15);
             this.lblVolume.TabIndex = 11;
@@ -838,6 +850,8 @@
             // 
             // volumeControl2
             // 
+            this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.volumeControl2.BackColor = System.Drawing.Color.Purple;
             this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.volumeControl2.Location = new System.Drawing.Point(775, 25);
@@ -1092,6 +1106,23 @@
             this.timer2.Enabled = true;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // trbPlaySpeed
+            // 
+            this.trbPlaySpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbPlaySpeed.Location = new System.Drawing.Point(344, 25);
+            this.trbPlaySpeed.Name = "trbPlaySpeed";
+            this.trbPlaySpeed.Size = new System.Drawing.Size(243, 45);
+            this.trbPlaySpeed.TabIndex = 8;
+            this.trbPlaySpeed.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.bunifuToolTip1.SetToolTip(this.trbPlaySpeed, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.trbPlaySpeed, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.trbPlaySpeed, "");
+            this.trbPlaySpeed.Value = 5;
+            this.trbPlaySpeed.ValueChanged += new System.EventHandler(this.trbPlaySpeed_ValueChanged);
+            this.trbPlaySpeed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbPlaySpeed_MouseUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1121,6 +1152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgEqualizer)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPlaySpeed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1159,6 +1191,7 @@
         private Bunifu.UI.WinForms.BunifuHSlider slider;
         private Bunifu.UI.WinForms.BunifuLabel lblTotalTime;
         private Bunifu.UI.WinForms.BunifuImageButton btnMinimize;
+        private System.Windows.Forms.TrackBar trbPlaySpeed;
     }
 }
 
