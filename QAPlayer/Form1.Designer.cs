@@ -1121,7 +1121,7 @@
             this.bunifuToolTip1.SetToolTipTitle(this.trbPlaySpeed, "");
             this.trbPlaySpeed.Value = 5;
             this.trbPlaySpeed.ValueChanged += new System.EventHandler(this.trbPlaySpeed_ValueChanged);
-            this.trbPlaySpeed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbPlaySpeed_MouseUp);
+            //this.trbPlaySpeed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trbPlaySpeed_MouseUp);
             // 
             // Form1
             // 

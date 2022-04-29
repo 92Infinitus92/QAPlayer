@@ -203,46 +203,6 @@ namespace QAPlayer
             }
         }
 
-        private void trbPlaySpeed_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch (trbPlaySpeed.Value)
-            {
-                case 1:
-                    player.settings.rate = zeroPointFive;
-                    break;
-                case 2:
-                    player.settings.rate = zeroPointSix;
-                    break;
-                case 3:
-                    player.settings.rate = zeroPointSeven;
-                    break;
-                case 4:
-                    player.settings.rate = zeroPointEight;
-                    break;
-                case 5:
-                    player.settings.rate = zeroPointNine;
-                    break;
-                case 6:
-                    player.settings.rate = one;
-                    break;
-                case 7:
-                    player.settings.rate = onePointOne;
-                    break;
-                case 8:
-                    player.settings.rate = onePointTwo;
-                    break;
-                case 9:
-                    player.settings.rate = onePointThree;
-                    break;
-                case 10:
-                    player.settings.rate = onePointFour;
-                    break;
-                case 11:
-                    player.settings.rate = onePointFive;
-                    break;
-            }
-        }
-
         private void trbPlaySpeed_ValueChanged(object sender, EventArgs e)
         {
             switch (trbPlaySpeed.Value)
