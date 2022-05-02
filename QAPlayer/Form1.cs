@@ -242,5 +242,40 @@ namespace QAPlayer
                     break;
             }
         }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                player.Ctlcontrols.pause();
+                player.Ctlcontrols.currentPosition -= 5;
+                player.Ctlcontrols.play();
+            }
+
+            if (e.KeyCode == Keys.Right)
+            {
+                player.Ctlcontrols.pause();
+                player.Ctlcontrols.currentPosition += 5;
+                player.Ctlcontrols.play();
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                if (volumeControl2.Value <= 90)
+                {
+                    player.settings.volume += 10;
+                    lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                }
+            }
+
+            if (e.KeyCode == Keys.Down)
+            {
+                if (volumeControl2.Value >= 10)
+                {
+                    player.settings.volume -= 10;
+                    lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                }
+            }
+        }
     }
 }
