@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AxWMPLib;
 using WMPLib;
+using MongoDB.Driver;
 
 namespace QAPlayer
 {
     public partial class Form1 : Form
     {
+        //playspeed variables
         public const double zeroPointFive = 0.5;
         public const double zeroPointSix = 0.6;
         public const double zeroPointSeven = 0.7;
@@ -27,11 +29,13 @@ namespace QAPlayer
         public const double onePointFour = 1.4;
         public const double onePointFive = 1.5;
 
+        //globalscope dataset variables
         public DateTime startTime;
         public DateTime endTime;
-        public static string PCName = Environment.MachineName;
         public bool isPlaying = false;
-        Database db = new Database();
+        
+        //database initialize
+         readonly Database db = new Database();
 
         public Form1()
         {
@@ -60,7 +64,7 @@ namespace QAPlayer
                 var file = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string URL = file[0];
                 this.player.URL = URL;
-                startTime = DateTime.Now;
+                startTime = DateTime.UtcNow;
             }
         }
 
@@ -79,19 +83,27 @@ namespace QAPlayer
             if (result == DialogResult.OK)
             {
                 player.URL = openFileDialog1.FileName;
-                startTime = DateTime.Now;
+                startTime = DateTime.UtcNow;
             }
         }
 
         //the main method for the backbone requirement of tracking listenedTime
         private void CalculateTime(DateTime startTime, DateTime endTime)
         {
+            string PCName = Form2.username.ToString();
             TimeSpan inSeconds = endTime - startTime;
             double totalTime = inSeconds.TotalSeconds;
 
-            var cnn = db.Connect();
-            string date = endTime.ToString("dd-MM-yyyy");
-            db.PushToBase(PCName, totalTime, date, cnn);
+            try
+            {
+               var cnn = db.Connect();
+               string date = endTime.ToString("dd-MM-yyyy HH:mm");
+               db.PushToBaseElapsedTime(PCName, totalTime, date, cnn);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //play/pause button
@@ -100,19 +112,24 @@ namespace QAPlayer
             if (player.playState == WMPPlayState.wmppsPaused)
             {
                 player.Ctlcontrols.play();
-                startTime = DateTime.Now;
+                btnPlay.Image = Properties.Resources.play_30px;
+                startTime = DateTime.UtcNow;
             }
             else
             {
                 player.Ctlcontrols.pause();
-                endTime = DateTime.Now;
+                btnPlay.Image = Properties.Resources.pause_30px;
+                endTime = DateTime.UtcNow;
             }
         }
 
         //exit button
         private void btnClose_Click(object sender, EventArgs e)
         {
-            player.Ctlcontrols.pause();
+            if (player.playState == WMPPlayState.wmppsPlaying)
+            {
+                player.Ctlcontrols.pause();
+            }
             Environment.Exit(0);
         }
 
@@ -137,12 +154,12 @@ namespace QAPlayer
 
             if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped)
             {
-                endTime = DateTime.Now;
+                endTime = DateTime.UtcNow;
                 CalculateTime(startTime, endTime);
             }
             else if (player.playState == WMPPlayState.wmppsPlaying)
             {
-                startTime = DateTime.Now;
+                startTime = DateTime.UtcNow;
             }
         }
 
@@ -203,6 +220,7 @@ namespace QAPlayer
             }
         }
 
+        //slider for changing the platSpeed
         private void trbPlaySpeed_ValueChanged(object sender, EventArgs e)
         {
             switch (trbPlaySpeed.Value)
@@ -243,6 +261,7 @@ namespace QAPlayer
             }
         }
 
+        //applying control from certain keys from the keyboard
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -276,6 +295,13 @@ namespace QAPlayer
                     lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
                 }
             }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Player was created for non-commercial use. It is build to serve the needs of our QA Department and if a bug is " +
+                "spotted please use whatever you have as an object near You. For updates and features please contact and praise our Lord of the Code" +
+                " and Saviour of the Unconnected - SYS Nick.");
         }
     }
 }

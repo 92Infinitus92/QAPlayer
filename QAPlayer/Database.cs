@@ -9,21 +9,24 @@ namespace QAPlayer
 {
     internal class Database
     {
-        public string connetionString = @"data source=192.168.180.131;initial catalog=WMPlayer;user id=sa;password=Devos#!3@";
-
-
+        public string connetionString = @"data source=79.100.222.111;initial catalog=WMPlayer;user id=SA;password=Devos#!3@";
 
         internal SqlConnection Connect()
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(this.connetionString);
-            cnn.Open();
-            return cnn;
+            try
+            {
+                SqlConnection cnn;
+                cnn = new SqlConnection(this.connetionString);
+                cnn.Open();
+                return cnn;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        internal void PushToBase(string PCName, double elapsedTime, string date, SqlConnection cnn)
-        {
-            try
+            internal void PushToBaseElapsedTime(string PCName, double elapsedTime, string date, SqlConnection cnn)
             {
                 elapsedTime = Math.Round(elapsedTime, 2);
                 String st = "INSERT INTO TimeWatched(PCName, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
@@ -33,12 +36,7 @@ namespace QAPlayer
                 cmd.Parameters.AddWithValue("@date", date);
                 cmd.ExecuteNonQuery();
             }
-            catch (ArithmeticException)
-            {
-                throw;
-            }
         }
     }
-}
 
 
