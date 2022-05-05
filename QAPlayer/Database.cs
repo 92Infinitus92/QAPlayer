@@ -26,10 +26,10 @@ namespace QAPlayer
             }
         }
 
-            internal void PushToBaseElapsedTime(string PCName, double elapsedTime, string date, SqlConnection cnn)
+            internal void PushToBaseElapsedTime(string PCName, double elapsedTime, DateTime date, SqlConnection cnn)
             {
                 elapsedTime = Math.Round(elapsedTime, 2);
-                String st = "INSERT INTO TimeWatched(PCName, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
+                String st = "INSERT INTO TimeListened(Username, ElapsedTime, CurrentDate) values (@PCName, @elapsedTime, @date)";
                 SqlCommand cmd = new SqlCommand(st, cnn);
                 cmd.Parameters.AddWithValue("@PCName", PCName);
                 cmd.Parameters.AddWithValue("@elapsedTime", elapsedTime);

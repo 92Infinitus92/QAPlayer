@@ -66,5 +66,10 @@ namespace QAPlayer
             }
             username = txtBoxUsername.Text.ToString();
         }
+
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

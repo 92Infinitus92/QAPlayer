@@ -64,7 +64,7 @@ namespace QAPlayer
                 var file = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string URL = file[0];
                 this.player.URL = URL;
-                startTime = DateTime.UtcNow;
+                startTime = DateTime.Now;
             }
         }
 
@@ -83,7 +83,7 @@ namespace QAPlayer
             if (result == DialogResult.OK)
             {
                 player.URL = openFileDialog1.FileName;
-                startTime = DateTime.UtcNow;
+                startTime = DateTime.Now;
             }
         }
 
@@ -97,8 +97,8 @@ namespace QAPlayer
             try
             {
                var cnn = db.Connect();
-               string date = endTime.ToString("dd-MM-yyyy HH:mm");
-               db.PushToBaseElapsedTime(PCName, totalTime, date, cnn);
+               //string date = endTime.ToString("dd-MM-yyyy HH:mm");
+               db.PushToBaseElapsedTime(PCName, totalTime, endTime, cnn);
             }
             catch (Exception ex)
             {
@@ -113,13 +113,13 @@ namespace QAPlayer
             {
                 player.Ctlcontrols.play();
                 btnPlay.Image = Properties.Resources.play_30px;
-                startTime = DateTime.UtcNow;
+                startTime = DateTime.Now;
             }
             else
             {
                 player.Ctlcontrols.pause();
                 btnPlay.Image = Properties.Resources.pause_30px;
-                endTime = DateTime.UtcNow;
+                endTime = DateTime.Now;
             }
         }
 
@@ -154,12 +154,12 @@ namespace QAPlayer
 
             if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped)
             {
-                endTime = DateTime.UtcNow;
+                endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
             }
             else if (player.playState == WMPPlayState.wmppsPlaying)
             {
-                startTime = DateTime.UtcNow;
+                startTime = DateTime.Now;
             }
         }
 
