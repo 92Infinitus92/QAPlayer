@@ -15,6 +15,8 @@ namespace QAPlayer
     {
         public static string username;
         readonly Database db = new Database();
+        private Point diffPoint;
+        bool mouseDown = false;
         public Form2()
         {
             InitializeComponent();
@@ -70,6 +72,35 @@ namespace QAPlayer
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void bunifuPanel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            diffPoint.X = System.Windows.Forms.Cursor.Position.X - this.Left;
+            diffPoint.Y = System.Windows.Forms.Cursor.Position.Y - this.Top;
+            mouseDown = true;
+        }
+
+        private void bunifuPanel2_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void bunifuPanel2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Left = System.Windows.Forms.Cursor.Position.X - diffPoint.X;
+                this.Top = System.Windows.Forms.Cursor.Position.Y - diffPoint.Y;
+            }
+        }
+
+        private void txtBoxUsername_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bunifuButton1_Click(sender, e);
+            }
         }
     }
 }
