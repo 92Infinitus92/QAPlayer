@@ -25,8 +25,18 @@ namespace QAPlayer
 
         private void bunifuButton1_Click(object sender, EventArgs e)
         {
-            var cnn = db.Connect();
-            DatabaseCheckUsername(cnn);
+            try
+            {
+                var cnn = db.Connect();
+                DatabaseCheckUsername(cnn);
+            }
+            catch (Exception ex)
+            {
+
+                msgbox box1 = new msgbox();
+                box1.lblBoxMessage.Text = ex.Message;
+                box1.Show();
+            }
         }
 
         //method which confirms that the username exists in the database and enables the player to be used
@@ -95,11 +105,21 @@ namespace QAPlayer
             }
         }
 
-        private void txtBoxUsername_KeyUp(object sender, KeyEventArgs e)
+        private void txtBoxUsername_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                bunifuButton1_Click(sender, e);
+                if (e.KeyCode == Keys.Enter)
+                {
+                    username = txtBoxUsername.Text.ToString();
+                    bunifuButton1_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                msgbox box1 = new msgbox();
+                box1.lblBoxMessage.Text = ex.Message;
+                box1.Show();
             }
         }
     }

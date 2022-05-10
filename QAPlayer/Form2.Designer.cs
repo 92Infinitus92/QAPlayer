@@ -230,7 +230,7 @@
             this.txtBoxUsername.TextPlaceholder = "Please enter your username";
             this.txtBoxUsername.UseSystemPasswordChar = false;
             this.txtBoxUsername.WordWrap = true;
-            this.txtBoxUsername.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBoxUsername_KeyUp);
+            this.txtBoxUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxUsername_KeyDown);
             this.txtBoxUsername.Leave += new System.EventHandler(this.txtBoxUsername_Leave);
             // 
             // bunifuPictureBox1
