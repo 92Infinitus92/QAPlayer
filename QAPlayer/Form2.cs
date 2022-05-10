@@ -72,10 +72,6 @@ namespace QAPlayer
         //here the username is collected in globalscope variable
         private void txtBoxUsername_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(txtBoxUsername.Text))
-            {
-
-            }
             username = txtBoxUsername.Text.ToString();
         }
 
