@@ -449,7 +449,9 @@
             this.btnMinimize.FadeWhenInactive = false;
             this.btnMinimize.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnMinimize.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnMinimize.ImageLocation = null;
             this.btnMinimize.ImageMargin = 20;
             this.btnMinimize.ImageSize = new System.Drawing.Size(29, 28);
@@ -469,7 +471,9 @@
             this.btnMinimize.ToolTipText = "";
             this.bunifuToolTip1.SetToolTipTitle(this.btnMinimize, "");
             this.btnMinimize.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnMinimize.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnMinimize.ZoomSpeed = 10;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
@@ -507,7 +511,9 @@
             this.btnClose.FadeWhenInactive = false;
             this.btnClose.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnClose.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnClose.ImageLocation = null;
             this.btnClose.ImageMargin = 20;
             this.btnClose.ImageSize = new System.Drawing.Size(29, 28);
@@ -527,7 +533,9 @@
             this.btnClose.ToolTipText = "";
             this.bunifuToolTip1.SetToolTipTitle(this.btnClose, "");
             this.btnClose.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnClose.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnClose.ZoomSpeed = 10;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -893,7 +901,9 @@
             this.btnForward.FadeWhenInactive = false;
             this.btnForward.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnForward.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnForward.ImageLocation = null;
             this.btnForward.ImageMargin = 20;
             this.btnForward.ImageSize = new System.Drawing.Size(30, 29);
@@ -913,7 +923,9 @@
             this.btnForward.ToolTipText = "";
             this.bunifuToolTip1.SetToolTipTitle(this.btnForward, "");
             this.btnForward.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnForward.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnForward.ZoomSpeed = 10;
             this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
             // 
@@ -932,7 +944,9 @@
             this.btnPlay.FadeWhenInactive = false;
             this.btnPlay.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.btnPlay.Image = global::QAPlayer.Properties.Resources.play_30px;
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnPlay.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnPlay.ImageLocation = null;
             this.btnPlay.ImageMargin = 20;
             this.btnPlay.ImageSize = new System.Drawing.Size(30, 29);
@@ -952,7 +966,9 @@
             this.btnPlay.ToolTipText = "";
             this.bunifuToolTip1.SetToolTipTitle(this.btnPlay, "");
             this.btnPlay.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnPlay.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnPlay.ZoomSpeed = 10;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
@@ -971,7 +987,9 @@
             this.btnBackward.FadeWhenInactive = false;
             this.btnBackward.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.btnBackward.Image = ((System.Drawing.Image)(resources.GetObject("btnBackward.Image")));
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnBackward.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.btnBackward.ImageLocation = null;
             this.btnBackward.ImageMargin = 20;
             this.btnBackward.ImageSize = new System.Drawing.Size(30, 29);
@@ -991,7 +1009,9 @@
             this.btnBackward.ToolTipText = "";
             this.bunifuToolTip1.SetToolTipTitle(this.btnBackward, "");
             this.btnBackward.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnBackward.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.btnBackward.ZoomSpeed = 10;
             this.btnBackward.Click += new System.EventHandler(this.btnBackward_Click);
             // 

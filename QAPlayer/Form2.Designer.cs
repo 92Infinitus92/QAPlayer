@@ -282,7 +282,9 @@
             this.bunifuImageButton1.FadeWhenInactive = false;
             this.bunifuImageButton1.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
             this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
+#pragma warning disable CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.bunifuImageButton1.ImageActive = null;
+#pragma warning restore CS0618 // 'BunifuImageButton.ImageActive' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ActiveImage' instead.'
             this.bunifuImageButton1.ImageLocation = null;
             this.bunifuImageButton1.ImageMargin = 20;
             this.bunifuImageButton1.ImageSize = new System.Drawing.Size(14, 12);
@@ -299,7 +301,9 @@
             this.bunifuImageButton1.TabIndex = 1;
             this.bunifuImageButton1.ToolTipText = "";
             this.bunifuImageButton1.WaitOnLoad = false;
+#pragma warning disable CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.bunifuImageButton1.Zoom = 20;
+#pragma warning restore CS0618 // 'BunifuImageButton.Zoom' is obsolete: 'This property has been deprecated as of version 1.6.0.0. Please use the property 'ImageMargin' instead.'
             this.bunifuImageButton1.ZoomSpeed = 10;
             this.bunifuImageButton1.Click += new System.EventHandler(this.bunifuImageButton1_Click);
             // 
