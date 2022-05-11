@@ -23,6 +23,7 @@ namespace QAPlayer
         public const double onePointFive = 1.5;
         string[] arguments = Environment.GetCommandLineArgs();
 
+
         //globalscope dataset variables
         public DateTime startTime;
         public DateTime endTime;
@@ -64,7 +65,12 @@ namespace QAPlayer
 
         //get's the file name and source
         private void Form1_Load(object sender, EventArgs e)
-        { 
+        {
+            if (arguments.Length > 1)
+            {
+                player.URL = arguments[1];
+                startTime = DateTime.Now;
+            }
             listFile.ValueMember = "Path";
             listFile.DisplayMember = "FileName";
         }
