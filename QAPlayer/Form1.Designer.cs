@@ -655,7 +655,7 @@
             this.bunifuToolTip1.SetToolTipTitle(this.player, "");
             this.player.Visible = false;
             this.player.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.player_PlayStateChange);
-            this.player.MediaChange += new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(this.player_MediaChange);
+            this.player.CurrentItemChange += new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(this.player_CurrentItemChange);
             // 
             // listFile
             // 

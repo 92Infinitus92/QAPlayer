@@ -23,14 +23,14 @@ namespace QAPlayer
         public const double onePointFive = 1.5;
         string[] arguments = Environment.GetCommandLineArgs();
 
-
         //globalscope dataset variables
         public DateTime startTime;
         public DateTime endTime;
         public bool isPlaying = false;
-        
+        string element;
+
         //database initialize
-         readonly Database db = new Database();
+        readonly Database db = new Database();
 
         public Form1()
         {
@@ -79,7 +79,6 @@ namespace QAPlayer
         private void btnAddFiles_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
-
             if (result == DialogResult.OK)
             {
                 player.URL = openFileDialog1.FileName;
@@ -96,9 +95,9 @@ namespace QAPlayer
 
             try
             {
-               var cnn = db.Connect();
-               //string date = endTime.ToString("dd-MM-yyyy HH:mm");
-               db.PushToBaseElapsedTime(PCName, totalTime, endTime, cnn);
+                var cnn = db.Connect();
+                //string date = endTime.ToString("dd-MM-yyyy HH:mm");
+                db.PushToBaseElapsedTime(PCName, totalTime, endTime, cnn);
             }
             catch (Exception ex)
             {
@@ -143,6 +142,7 @@ namespace QAPlayer
             {
                 lblTotalTime.Text = player.Ctlcontrols.currentItem.durationString.ToString();
                 slider.Maximum = (int)player.currentMedia.duration;
+                element = player.URL;
             }
         }
 
@@ -152,14 +152,24 @@ namespace QAPlayer
             bunifuLabel2.Text = player.status;
             imgEqualizer.Enabled = player.status.ToLower().Contains("playing");
 
-            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped || player.playState == WMPPlayState.wmppsMediaEnded)
+
+            if (player.playState == WMPPlayState.wmppsMediaEnded)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
+                player.settings.setMode("loop", true);
+            }
+
+            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped)
+            {
+                endTime = DateTime.Now;
+                CalculateTime(startTime, endTime);
+                isPlaying = false;
             }
             else if (player.playState == WMPPlayState.wmppsPlaying)
             {
                 startTime = DateTime.Now;
+                isPlaying = true;
             }
         }
 
@@ -304,12 +314,13 @@ namespace QAPlayer
                 " and Saviour of the Unconnected - SYS Nick.");
         }
 
-        private void player_MediaChange(object sender, _WMPOCXEvents_MediaChangeEvent e)
+        private void player_CurrentItemChange(object sender, _WMPOCXEvents_CurrentItemChangeEvent e)
         {
-            if (player.playState == WMPPlayState.wmppsPlaying)
+            if (isPlaying)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
+                startTime = DateTime.Now;
             }
         }
     }
