@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AxWMPLib;
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using AxWMPLib;
 using WMPLib;
-using MongoDB.Driver;
 
 namespace QAPlayer
 {
@@ -28,6 +21,7 @@ namespace QAPlayer
         public const double onePointThree = 1.3;
         public const double onePointFour = 1.4;
         public const double onePointFive = 1.5;
+        string[] arguments = Environment.GetCommandLineArgs();
 
         //globalscope dataset variables
         public DateTime startTime;
@@ -70,7 +64,7 @@ namespace QAPlayer
 
         //get's the file name and source
         private void Form1_Load(object sender, EventArgs e)
-        {
+        { 
             listFile.ValueMember = "Path";
             listFile.DisplayMember = "FileName";
         }

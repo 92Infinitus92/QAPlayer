@@ -82,8 +82,8 @@ namespace QAPlayer
 
         private void bunifuPanel2_MouseDown(object sender, MouseEventArgs e)
         {
-            diffPoint.X = System.Windows.Forms.Cursor.Position.X - this.Left;
-            diffPoint.Y = System.Windows.Forms.Cursor.Position.Y - this.Top;
+            diffPoint.X = Cursor.Position.X - this.Left;
+            diffPoint.Y = Cursor.Position.Y - this.Top;
             mouseDown = true;
         }
 
@@ -96,8 +96,8 @@ namespace QAPlayer
         {
             if (mouseDown)
             {
-                this.Left = System.Windows.Forms.Cursor.Position.X - diffPoint.X;
-                this.Top = System.Windows.Forms.Cursor.Position.Y - diffPoint.Y;
+                this.Left = Cursor.Position.X - diffPoint.X;
+                this.Top = Cursor.Position.Y - diffPoint.Y;
             }
         }
 
