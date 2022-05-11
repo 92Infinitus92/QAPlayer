@@ -112,13 +112,13 @@ namespace QAPlayer
             if (player.playState == WMPPlayState.wmppsPaused)
             {
                 player.Ctlcontrols.play();
-                btnPlay.Image = Properties.Resources.play_30px;
+                btnPlay.Image = Properties.Resources.pause_30px;
                 startTime = DateTime.Now;
             }
             else
             {
                 player.Ctlcontrols.pause();
-                btnPlay.Image = Properties.Resources.pause_30px;
+                btnPlay.Image = Properties.Resources.play_30px;
                 endTime = DateTime.Now;
             }
         }
@@ -302,6 +302,15 @@ namespace QAPlayer
             MessageBox.Show("This Player was created for non-commercial use. It is build to serve the needs of our QA Department and if a bug is " +
                 "spotted please use whatever you have as an object near You. For updates and features please contact and praise our Lord of the Code" +
                 " and Saviour of the Unconnected - SYS Nick.");
+        }
+
+        private void player_MediaChange(object sender, _WMPOCXEvents_MediaChangeEvent e)
+        {
+            if (player.playState == WMPPlayState.wmppsPlaying)
+            {
+                endTime = DateTime.Now;
+                CalculateTime(startTime, endTime);
+            }
         }
     }
 }
