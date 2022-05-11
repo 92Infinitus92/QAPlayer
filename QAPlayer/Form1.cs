@@ -152,7 +152,7 @@ namespace QAPlayer
             bunifuLabel2.Text = player.status;
             imgEqualizer.Enabled = player.status.ToLower().Contains("playing");
 
-            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped || player.playState == WMPPlayState.wmppsTransitioning)
+            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped || player.playState == WMPPlayState.wmppsMediaEnded)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
