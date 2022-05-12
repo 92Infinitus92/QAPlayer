@@ -2,6 +2,7 @@
 using System;
 using System.Deployment.Application;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WMPLib;
@@ -310,12 +311,10 @@ namespace QAPlayer
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            string versionString = (String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Revision, version.Build));
-
+            string version = VersionLabel.ToString();
             MessageBox.Show("This Player was created for non-commercial use. It is build to serve the needs of our QA Department and if a bug is " +
                 "spotted please use whatever you have as an object near You. For updates and features please contact and praise our Lord of the Code" +
-                " and Saviour of the Unconnected - SYS Nick.\r\n" + versionString);
+                " and Saviour of the Unconnected - SYS Nick.\r\n" + version);
         }
 
         private void player_CurrentItemChange(object sender, _WMPOCXEvents_CurrentItemChangeEvent e)
@@ -331,6 +330,23 @@ namespace QAPlayer
         private void slider_MouseHover(object sender, EventArgs e)
         {
 
+        }
+
+        public string VersionLabel
+        {
+            get
+            {
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    Version ver = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    return string.Format("Version: {0}.{1}.{2}.{3}", ver.Major.ToString(), ver.Minor.ToString(), ver.Build.ToString(), ver.Revision.ToString());
+                }
+                else
+                {
+                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
+                    return string.Format("Version: {0}.{1}.{2}.{3}", ver.Major.ToString(), ver.Minor.ToString(), ver.Build.ToString(), ver.Revision.ToString());
+                }
+            }
         }
     }
 }
