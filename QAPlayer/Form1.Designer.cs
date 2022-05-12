@@ -57,6 +57,7 @@
             this.trbPlaySpeed = new System.Windows.Forms.TrackBar();
             this.lblTotalTime = new Bunifu.UI.WinForms.BunifuLabel();
             this.lblVolume = new System.Windows.Forms.Label();
+            this.volumeControl2 = new QAPlayer.VolumeControl();
             this.lblTime = new Bunifu.UI.WinForms.BunifuLabel();
             this.btnForward = new Bunifu.UI.WinForms.BunifuImageButton();
             this.btnPlay = new Bunifu.UI.WinForms.BunifuImageButton();
@@ -66,7 +67,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bunifuToolTip1 = new Bunifu.UI.WinForms.BunifuToolTip(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.volumeControl2 = new QAPlayer.VolumeControl();
             this.panelLeftNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -648,7 +648,7 @@
             this.player.Location = new System.Drawing.Point(-38, 43);
             this.player.Name = "player";
             this.player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player.OcxState")));
-            this.player.Size = new System.Drawing.Size(1064, 390);
+            this.player.Size = new System.Drawing.Size(837, 390);
             this.player.TabIndex = 12;
             this.bunifuToolTip1.SetToolTip(this.player, "");
             this.bunifuToolTip1.SetToolTipIcon(this.player, null);
@@ -858,6 +858,24 @@
             this.bunifuToolTip1.SetToolTipIcon(this.lblVolume, null);
             this.bunifuToolTip1.SetToolTipTitle(this.lblVolume, "");
             // 
+            // volumeControl2
+            // 
+            this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeControl2.BackColor = System.Drawing.Color.Black;
+            this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
+            this.volumeControl2.Location = new System.Drawing.Point(542, 25);
+            this.volumeControl2.Max = 100;
+            this.volumeControl2.Min = 0;
+            this.volumeControl2.Name = "volumeControl2";
+            this.volumeControl2.Size = new System.Drawing.Size(273, 13);
+            this.volumeControl2.TabIndex = 10;
+            this.bunifuToolTip1.SetToolTip(this.volumeControl2, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.volumeControl2, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.volumeControl2, "");
+            this.volumeControl2.Value = 100;
+            this.volumeControl2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.volumeControl2_MouseMove);
+            // 
             // lblTime
             // 
             this.lblTime.AllowParentOverrides = false;
@@ -1046,6 +1064,7 @@
             this.bunifuToolTip1.SetToolTipIcon(this.slider, null);
             this.bunifuToolTip1.SetToolTipTitle(this.slider, "");
             this.slider.Value = 0;
+            this.slider.MouseHover += new System.EventHandler(this.slider_MouseHover);
             this.slider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.slider_MouseUp);
             // 
             // openFileDialog1
@@ -1097,24 +1116,6 @@
             // 
             this.timer2.Enabled = true;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // volumeControl2
-            // 
-            this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeControl2.BackColor = System.Drawing.Color.Black;
-            this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
-            this.volumeControl2.Location = new System.Drawing.Point(542, 25);
-            this.volumeControl2.Max = 100;
-            this.volumeControl2.Min = 0;
-            this.volumeControl2.Name = "volumeControl2";
-            this.volumeControl2.Size = new System.Drawing.Size(273, 13);
-            this.volumeControl2.TabIndex = 10;
-            this.bunifuToolTip1.SetToolTip(this.volumeControl2, "");
-            this.bunifuToolTip1.SetToolTipIcon(this.volumeControl2, null);
-            this.bunifuToolTip1.SetToolTipTitle(this.volumeControl2, "");
-            this.volumeControl2.Value = 100;
-            this.volumeControl2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.volumeControl2_MouseMove);
             // 
             // Form1
             // 

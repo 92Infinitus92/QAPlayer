@@ -72,7 +72,7 @@ namespace QAPlayer
         //here the username is collected in globalscope variable
         private void txtBoxUsername_Leave(object sender, EventArgs e)
         {
-            username = txtBoxUsername.Text.ToString();
+            username = txtBoxUsername.Text.ToString().Trim();
         }
 
         private void bunifuImageButton1_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@ namespace QAPlayer
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    username = txtBoxUsername.Text.ToString();
+                    username = txtBoxUsername.Text.ToString().Trim();
                     bunifuButton1_Click(sender, e);
                 }
             }

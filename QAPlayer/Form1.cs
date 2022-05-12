@@ -1,5 +1,6 @@
 ﻿using AxWMPLib;
 using System;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -309,9 +310,12 @@ namespace QAPlayer
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            string versionString = (String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Revision, version.Build));
+
             MessageBox.Show("This Player was created for non-commercial use. It is build to serve the needs of our QA Department and if a bug is " +
                 "spotted please use whatever you have as an object near You. For updates and features please contact and praise our Lord of the Code" +
-                " and Saviour of the Unconnected - SYS Nick.");
+                " and Saviour of the Unconnected - SYS Nick.\r\n" + versionString);
         }
 
         private void player_CurrentItemChange(object sender, _WMPOCXEvents_CurrentItemChangeEvent e)
@@ -322,6 +326,11 @@ namespace QAPlayer
                 CalculateTime(startTime, endTime);
                 startTime = DateTime.Now;
             }
+        }
+
+        private void slider_MouseHover(object sender, EventArgs e)
+        {
+
         }
     }
 }
