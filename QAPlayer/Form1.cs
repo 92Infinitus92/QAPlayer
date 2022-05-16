@@ -353,6 +353,8 @@ namespace QAPlayer
             }
         }
 
+
+        //draggable form and header
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             diffPoint.X = Cursor.Position.X - this.Left;

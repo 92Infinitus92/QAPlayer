@@ -343,6 +343,7 @@
             this.bunifuToolTip1.SetToolTipTitle(this.player, "");
             this.player.Visible = false;
             this.player.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.player_PlayStateChange);
+            this.player.CurrentItemChange += new AxWMPLib._WMPOCXEvents_CurrentItemChangeEventHandler(this.player_CurrentItemChange);
             // 
             // btnMinimize
             // 
