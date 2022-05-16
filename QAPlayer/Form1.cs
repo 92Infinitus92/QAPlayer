@@ -60,7 +60,7 @@ namespace QAPlayer
             {
                 var file = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string URL = file[0];
-                this.player.URL = URL;
+                this.axWindowsMediaPlayer1.URL = URL;
                 startTime = DateTime.Now;
             }
         }
@@ -70,7 +70,7 @@ namespace QAPlayer
         {
             if (arguments.Length > 1)
             {
-                player.URL = arguments[1];
+                axWindowsMediaPlayer1.URL = arguments[1];
                 startTime = DateTime.Now;
             }
             listFile.ValueMember = "Path";
@@ -83,7 +83,7 @@ namespace QAPlayer
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
-                player.URL = openFileDialog1.FileName;
+                axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
                 startTime = DateTime.Now;
             }
         }
@@ -110,15 +110,15 @@ namespace QAPlayer
         //play/pause button
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (player.playState == WMPPlayState.wmppsPaused)
+            if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPaused)
             {
-                player.Ctlcontrols.play();
+                axWindowsMediaPlayer1.Ctlcontrols.play();
                 btnPlay.Image = Properties.Resources.pause_30px;
                 startTime = DateTime.Now;
             }
             else
             {
-                player.Ctlcontrols.pause();
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
                 btnPlay.Image = Properties.Resources.play_30px;
                 endTime = DateTime.Now;
             }
@@ -127,9 +127,9 @@ namespace QAPlayer
         //exit button
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (player.playState == WMPPlayState.wmppsPlaying)
+            if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPlaying)
             {
-                player.Ctlcontrols.pause();
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
             }
             Environment.Exit(0);
         }
@@ -137,38 +137,38 @@ namespace QAPlayer
         //the labels are connected with the timer and display the elapsed and totalTime of the current media
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblTime.Text = player.Ctlcontrols.currentPositionString;
-            slider.Value = (int)player.Ctlcontrols.currentPosition;
+            lblTime.Text = axWindowsMediaPlayer1.Ctlcontrols.currentPositionString;
+            slider.Value = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
 
-            if (player.playState == WMPPlayState.wmppsPlaying)
+            if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPlaying)
             {
-                lblTotalTime.Text = player.Ctlcontrols.currentItem.durationString.ToString();
-                slider.Maximum = (int)player.currentMedia.duration;
-                element = player.URL;
+                lblTotalTime.Text = axWindowsMediaPlayer1.Ctlcontrols.currentItem.durationString.ToString();
+                slider.Maximum = (int)axWindowsMediaPlayer1.currentMedia.duration;
+                element = axWindowsMediaPlayer1.URL;
             }
         }
 
         //detects when the player status is changed and collects datetime data
         private void player_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent e)
         {
-            bunifuLabel2.Text = player.status;
-            imgEqualizer.Enabled = player.status.ToLower().Contains("playing");
+            bunifuLabel2.Text = axWindowsMediaPlayer1.status;
+            //imgEqualizer.Enabled = player.status.ToLower().Contains("playing");
 
 
-            if (player.playState == WMPPlayState.wmppsMediaEnded)
+            if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsMediaEnded)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
-                player.settings.setMode("loop", true);
+                axWindowsMediaPlayer1.settings.setMode("loop", true);
             }
 
-            if (player.playState == WMPPlayState.wmppsPaused || player.playState == WMPPlayState.wmppsStopped)
+            if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPaused || axWindowsMediaPlayer1.playState == WMPPlayState.wmppsStopped)
             {
                 endTime = DateTime.Now;
                 CalculateTime(startTime, endTime);
                 isPlaying = false;
             }
-            else if (player.playState == WMPPlayState.wmppsPlaying)
+            else if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPlaying)
             {
                 startTime = DateTime.Now;
                 isPlaying = true;
@@ -178,9 +178,9 @@ namespace QAPlayer
         //btn skip 5 seconds
         private void btnForward_Click(object sender, EventArgs e)
         {
-            player.Ctlcontrols.pause();
-            player.Ctlcontrols.currentPosition += 5;
-            player.Ctlcontrols.play();
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
+            axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 5;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
         }
 
         //timer for the volume bar
@@ -192,7 +192,7 @@ namespace QAPlayer
         //mouse move and label of the volume bar
         private void volumeControl2_MouseMove(object sender, MouseEventArgs e)
         {
-            player.settings.volume = volumeControl2.Value;
+            axWindowsMediaPlayer1.settings.volume = volumeControl2.Value;
             lblVolume.Text = "Volume: " + volumeControl2.Value.ToString() + "%";
         }
 
@@ -205,15 +205,15 @@ namespace QAPlayer
         //moves the slider to the desired position based on mouse click event
         private void slider_MouseUp(object sender, MouseEventArgs e)
         {
-            player.Ctlcontrols.currentPosition = slider.Value;
+            axWindowsMediaPlayer1.Ctlcontrols.currentPosition = slider.Value;
         }
 
         //btn rewinds 5 seconds
         private void btnBackward_Click(object sender, EventArgs e)
         {
-            player.Ctlcontrols.pause();
-            player.Ctlcontrols.currentPosition -= 5;
-            player.Ctlcontrols.play();
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
+            axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 5;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
         }
 
         //when spacebar or enter is pressed the playstate is changed the play or pause depending from the previous state
@@ -221,13 +221,13 @@ namespace QAPlayer
         {
             if ((e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space))
             {
-                if (player.playState == WMPPlayState.wmppsPlaying)
+                if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPlaying)
                 {
-                    player.Ctlcontrols.pause();
+                    axWindowsMediaPlayer1.Ctlcontrols.pause();
                 }
-                else if (player.playState == WMPPlayState.wmppsPaused)
+                else if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPaused)
                 {
-                    player.Ctlcontrols.play();
+                    axWindowsMediaPlayer1.Ctlcontrols.play();
                 }
             }
         }
@@ -238,37 +238,37 @@ namespace QAPlayer
             switch (trbPlaySpeed.Value)
             {
                 case 1:
-                    player.settings.rate = zeroPointFive;
+                    axWindowsMediaPlayer1.settings.rate = zeroPointFive;
                     break;
                 case 2:
-                    player.settings.rate = zeroPointSix;
+                    axWindowsMediaPlayer1.settings.rate = zeroPointSix;
                     break;
                 case 3:
-                    player.settings.rate = zeroPointSeven;
+                    axWindowsMediaPlayer1.settings.rate = zeroPointSeven;
                     break;
                 case 4:
-                    player.settings.rate = zeroPointEight;
+                    axWindowsMediaPlayer1.settings.rate = zeroPointEight;
                     break;
                 case 5:
-                    player.settings.rate = zeroPointNine;
+                    axWindowsMediaPlayer1.settings.rate = zeroPointNine;
                     break;
                 case 6:
-                    player.settings.rate = one;
+                    axWindowsMediaPlayer1.settings.rate = one;
                     break;
                 case 7:
-                    player.settings.rate = onePointOne;
+                    axWindowsMediaPlayer1.settings.rate = onePointOne;
                     break;
                 case 8:
-                    player.settings.rate = onePointTwo;
+                    axWindowsMediaPlayer1.settings.rate = onePointTwo;
                     break;
                 case 9:
-                    player.settings.rate = onePointThree;
+                    axWindowsMediaPlayer1.settings.rate = onePointThree;
                     break;
                 case 10:
-                    player.settings.rate = onePointFour;
+                    axWindowsMediaPlayer1.settings.rate = onePointFour;
                     break;
                 case 11:
-                    player.settings.rate = onePointFive;
+                    axWindowsMediaPlayer1.settings.rate = onePointFive;
                     break;
             }
         }
@@ -278,24 +278,24 @@ namespace QAPlayer
         {
             if (e.KeyCode == Keys.Left)
             {
-                player.Ctlcontrols.pause();
-                player.Ctlcontrols.currentPosition -= 5;
-                player.Ctlcontrols.play();
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 5;
+                axWindowsMediaPlayer1.Ctlcontrols.play();
             }
 
             if (e.KeyCode == Keys.Right)
             {
-                player.Ctlcontrols.pause();
-                player.Ctlcontrols.currentPosition += 5;
-                player.Ctlcontrols.play();
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 5;
+                axWindowsMediaPlayer1.Ctlcontrols.play();
             }
 
             if (e.KeyCode == Keys.Up)
             {
                 if (volumeControl2.Value <= 90)
                 {
-                    player.settings.volume += 10;
-                    lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                    axWindowsMediaPlayer1.settings.volume += 10;
+                    lblVolume.Text = "Volume: " + axWindowsMediaPlayer1.settings.volume.ToString() + "%";
                 }
             }
 
@@ -303,8 +303,8 @@ namespace QAPlayer
             {
                 if (volumeControl2.Value >= 10)
                 {
-                    player.settings.volume -= 10;
-                    lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                    axWindowsMediaPlayer1.settings.volume -= 10;
+                    lblVolume.Text = "Volume: " + axWindowsMediaPlayer1.settings.volume.ToString() + "%";
                 }
             }
         }
