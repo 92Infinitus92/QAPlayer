@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -43,10 +43,12 @@
             this.btnAddFiles = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.lblTime = new Bunifu.UI.WinForms.BunifuLabel();
             this.lblTotalTime = new Bunifu.UI.WinForms.BunifuLabel();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.player = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnMinimize = new Bunifu.UI.WinForms.BunifuImageButton();
             this.btnClose = new Bunifu.UI.WinForms.BunifuImageButton();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.bunifuLabel3 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
             this.btnNowPlaying = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -61,8 +63,10 @@
             this.lblVolume = new System.Windows.Forms.Label();
             this.trbPlaySpeed = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTotalTime2 = new System.Windows.Forms.Label();
+            this.lblTime2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLeftNavbar.SuspendLayout();
@@ -208,11 +212,11 @@
             this.btnAddFiles.ColorContrastOnClick = 45;
             this.btnAddFiles.ColorContrastOnHover = 45;
             this.btnAddFiles.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.btnAddFiles.CustomizableEdges = borderEdges1;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.btnAddFiles.CustomizableEdges = borderEdges5;
             this.btnAddFiles.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnAddFiles.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnAddFiles.DisabledFillColor = System.Drawing.Color.Empty;
@@ -326,17 +330,18 @@
             this.bunifuToolTip1.SetToolTipIcon(this.lblTotalTime, null);
             this.bunifuToolTip1.SetToolTipTitle(this.lblTotalTime, "");
             // 
-            // axWindowsMediaPlayer1
+            // player
             // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(235, 166);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(830, 297);
-            this.axWindowsMediaPlayer1.TabIndex = 12;
-            this.bunifuToolTip1.SetToolTip(this.axWindowsMediaPlayer1, "");
-            this.bunifuToolTip1.SetToolTipIcon(this.axWindowsMediaPlayer1, null);
-            this.bunifuToolTip1.SetToolTipTitle(this.axWindowsMediaPlayer1, "");
+            this.player.Enabled = true;
+            this.player.Location = new System.Drawing.Point(235, 166);
+            this.player.Name = "player";
+            this.player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("player.OcxState")));
+            this.player.Size = new System.Drawing.Size(830, 297);
+            this.player.TabIndex = 12;
+            this.bunifuToolTip1.SetToolTip(this.player, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.player, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.player, "");
+            this.player.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.player_PlayStateChange);
             // 
             // btnMinimize
             // 
@@ -419,6 +424,8 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.Black;
+            this.panelHeader.Controls.Add(this.lblTitle);
+            this.panelHeader.Controls.Add(this.bunifuLabel3);
             this.panelHeader.Controls.Add(this.btnClose);
             this.panelHeader.Controls.Add(this.btnMinimize);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -429,6 +436,39 @@
             this.bunifuToolTip1.SetToolTip(this.panelHeader, "");
             this.bunifuToolTip1.SetToolTipIcon(this.panelHeader, null);
             this.bunifuToolTip1.SetToolTipTitle(this.panelHeader, "");
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(19, 17);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(28, 17);
+            this.lblTitle.TabIndex = 10;
+            this.lblTitle.Text = "File";
+            this.bunifuToolTip1.SetToolTip(this.lblTitle, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.lblTitle, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.lblTitle, "");
+            // 
+            // bunifuLabel3
+            // 
+            this.bunifuLabel3.AllowParentOverrides = false;
+            this.bunifuLabel3.AutoEllipsis = false;
+            this.bunifuLabel3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel3.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel3.Location = new System.Drawing.Point(3, 37);
+            this.bunifuLabel3.Name = "bunifuLabel3";
+            this.bunifuLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel3.Size = new System.Drawing.Size(69, 15);
+            this.bunifuLabel3.TabIndex = 9;
+            this.bunifuLabel3.Text = "bunifuLabel3";
+            this.bunifuLabel3.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel3.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            this.bunifuToolTip1.SetToolTip(this.bunifuLabel3, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.bunifuLabel3, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.bunifuLabel3, "");
             // 
             // bunifuLabel2
             // 
@@ -468,11 +508,11 @@
             this.btnNowPlaying.ColorContrastOnClick = 45;
             this.btnNowPlaying.ColorContrastOnHover = 45;
             this.btnNowPlaying.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.btnNowPlaying.CustomizableEdges = borderEdges4;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.btnNowPlaying.CustomizableEdges = borderEdges6;
             this.btnNowPlaying.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnNowPlaying.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnNowPlaying.DisabledFillColor = System.Drawing.Color.Empty;
@@ -564,11 +604,11 @@
             this.btnSettings.ColorContrastOnClick = 45;
             this.btnSettings.ColorContrastOnHover = 45;
             this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.btnSettings.CustomizableEdges = borderEdges3;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.btnSettings.CustomizableEdges = borderEdges7;
             this.btnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnSettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSettings.DisabledFillColor = System.Drawing.Color.Empty;
@@ -661,11 +701,11 @@
             this.btnHelp.ColorContrastOnClick = 45;
             this.btnHelp.ColorContrastOnHover = 45;
             this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.btnHelp.CustomizableEdges = borderEdges2;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            this.btnHelp.CustomizableEdges = borderEdges8;
             this.btnHelp.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnHelp.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnHelp.DisabledFillColor = System.Drawing.Color.Empty;
@@ -790,7 +830,7 @@
             this.slider.DurationBeforeShrink = 2000;
             this.slider.ElapsedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
             this.slider.LargeChange = 10;
-            this.slider.Location = new System.Drawing.Point(174, 3);
+            this.slider.Location = new System.Drawing.Point(174, -1);
             this.slider.Maximum = 100;
             this.slider.Minimum = 0;
             this.slider.MinimumSize = new System.Drawing.Size(0, 31);
@@ -994,6 +1034,8 @@
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblTotalTime2);
+            this.panel1.Controls.Add(this.lblTime2);
             this.panel1.Controls.Add(this.trbPlaySpeed);
             this.panel1.Controls.Add(this.lblVolume);
             this.panel1.Controls.Add(this.volumeControl2);
@@ -1011,6 +1053,30 @@
             this.bunifuToolTip1.SetToolTipIcon(this.panel1, null);
             this.bunifuToolTip1.SetToolTipTitle(this.panel1, "");
             // 
+            // lblTotalTime2
+            // 
+            this.lblTotalTime2.BackColor = System.Drawing.Color.Black;
+            this.lblTotalTime2.ForeColor = System.Drawing.Color.White;
+            this.lblTotalTime2.Location = new System.Drawing.Point(509, 25);
+            this.lblTotalTime2.Name = "lblTotalTime2";
+            this.lblTotalTime2.Size = new System.Drawing.Size(40, 22);
+            this.lblTotalTime2.TabIndex = 14;
+            this.bunifuToolTip1.SetToolTip(this.lblTotalTime2, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.lblTotalTime2, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.lblTotalTime2, "");
+            // 
+            // lblTime2
+            // 
+            this.lblTime2.BackColor = System.Drawing.Color.Black;
+            this.lblTime2.ForeColor = System.Drawing.Color.White;
+            this.lblTime2.Location = new System.Drawing.Point(163, 25);
+            this.lblTime2.Name = "lblTime2";
+            this.lblTime2.Size = new System.Drawing.Size(51, 22);
+            this.lblTime2.TabIndex = 13;
+            this.bunifuToolTip1.SetToolTip(this.lblTime2, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.lblTime2, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.lblTime2, "");
+            // 
             // timer2
             // 
             this.timer2.Enabled = true;
@@ -1025,7 +1091,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1065, 547);
             this.ControlBox = false;
-            this.Controls.Add(this.axWindowsMediaPlayer1);
+            this.Controls.Add(this.player);
             this.Controls.Add(this.btnAddFiles);
             this.Controls.Add(this.listFile);
             this.Controls.Add(this.panelHeader);
@@ -1043,8 +1109,9 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLeftNavbar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trbPlaySpeed)).EndInit();
@@ -1063,7 +1130,7 @@
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnAddFiles;
         private System.Windows.Forms.ListBox listFile;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private AxWMPLib.AxWindowsMediaPlayer player;
         private System.Windows.Forms.Panel panelHeader;
         private Bunifu.UI.WinForms.BunifuImageButton btnClose;
         private Bunifu.UI.WinForms.BunifuImageButton btnMinimize;
@@ -1083,6 +1150,10 @@
         private Bunifu.UI.WinForms.BunifuImageButton btnPlay;
         private Bunifu.UI.WinForms.BunifuImageButton btnBackward;
         private Bunifu.UI.WinForms.BunifuHSlider slider;
+        private System.Windows.Forms.Label lblTime2;
+        private System.Windows.Forms.Label lblTotalTime2;
+        private System.Windows.Forms.Label lblTitle;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel3;
     }
 }
 
