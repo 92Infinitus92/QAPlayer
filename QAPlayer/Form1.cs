@@ -2,6 +2,7 @@
 using System;
 using System.Deployment.Application;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -30,6 +31,8 @@ namespace QAPlayer
         public DateTime endTime;
         public bool isPlaying = false;
         string element;
+        private bool mouseDown;
+        private Point diffPoint;
 
         //database initialize
         readonly Database db = new Database();
@@ -37,6 +40,7 @@ namespace QAPlayer
         public Form1()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             //allows drag and drop to the form
             this.AllowDrop = true;
@@ -346,6 +350,48 @@ namespace QAPlayer
                     var ver = Assembly.GetExecutingAssembly().GetName().Version;
                     return string.Format("Version: {0}.{1}.{2}.{3}", ver.Major.ToString(), ver.Minor.ToString(), ver.Build.ToString(), ver.Revision.ToString());
                 }
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            diffPoint.X = Cursor.Position.X - this.Left;
+            diffPoint.Y = Cursor.Position.Y - this.Top;
+            mouseDown = true;
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Left = Cursor.Position.X - diffPoint.X;
+                this.Top = Cursor.Position.Y - diffPoint.Y;
+            }
+        }
+
+        private void panelHeader_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            diffPoint.X = Cursor.Position.X - this.Left;
+            diffPoint.Y = Cursor.Position.Y - this.Top;
+            mouseDown = true;
+        }
+
+        private void panelHeader_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Left = Cursor.Position.X - diffPoint.X;
+                this.Top = Cursor.Position.Y - diffPoint.Y;
             }
         }
     }

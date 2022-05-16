@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -59,13 +59,13 @@
             this.btnBackward = new Bunifu.UI.WinForms.BunifuImageButton();
             this.btnPlay = new Bunifu.UI.WinForms.BunifuImageButton();
             this.btnForward = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.volumeControl2 = new QAPlayer.VolumeControl();
             this.lblVolume = new System.Windows.Forms.Label();
             this.trbPlaySpeed = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTotalTime2 = new System.Windows.Forms.Label();
             this.lblTime2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.volumeControl2 = new QAPlayer.VolumeControl();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -212,11 +212,11 @@
             this.btnAddFiles.ColorContrastOnClick = 45;
             this.btnAddFiles.ColorContrastOnHover = 45;
             this.btnAddFiles.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges5.BottomLeft = true;
-            borderEdges5.BottomRight = true;
-            borderEdges5.TopLeft = true;
-            borderEdges5.TopRight = true;
-            this.btnAddFiles.CustomizableEdges = borderEdges5;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnAddFiles.CustomizableEdges = borderEdges1;
             this.btnAddFiles.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnAddFiles.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnAddFiles.DisabledFillColor = System.Drawing.Color.Empty;
@@ -341,6 +341,7 @@
             this.bunifuToolTip1.SetToolTip(this.player, "");
             this.bunifuToolTip1.SetToolTipIcon(this.player, null);
             this.bunifuToolTip1.SetToolTipTitle(this.player, "");
+            this.player.Visible = false;
             this.player.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.player_PlayStateChange);
             // 
             // btnMinimize
@@ -436,6 +437,9 @@
             this.bunifuToolTip1.SetToolTip(this.panelHeader, "");
             this.bunifuToolTip1.SetToolTipIcon(this.panelHeader, null);
             this.bunifuToolTip1.SetToolTipTitle(this.panelHeader, "");
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
+            this.panelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseMove);
+            this.panelHeader.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseUp);
             // 
             // lblTitle
             // 
@@ -508,11 +512,11 @@
             this.btnNowPlaying.ColorContrastOnClick = 45;
             this.btnNowPlaying.ColorContrastOnHover = 45;
             this.btnNowPlaying.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges6.BottomLeft = true;
-            borderEdges6.BottomRight = true;
-            borderEdges6.TopLeft = true;
-            borderEdges6.TopRight = true;
-            this.btnNowPlaying.CustomizableEdges = borderEdges6;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.btnNowPlaying.CustomizableEdges = borderEdges4;
             this.btnNowPlaying.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnNowPlaying.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnNowPlaying.DisabledFillColor = System.Drawing.Color.Empty;
@@ -604,11 +608,11 @@
             this.btnSettings.ColorContrastOnClick = 45;
             this.btnSettings.ColorContrastOnHover = 45;
             this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges7.BottomLeft = true;
-            borderEdges7.BottomRight = true;
-            borderEdges7.TopLeft = true;
-            borderEdges7.TopRight = true;
-            this.btnSettings.CustomizableEdges = borderEdges7;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.btnSettings.CustomizableEdges = borderEdges3;
             this.btnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnSettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnSettings.DisabledFillColor = System.Drawing.Color.Empty;
@@ -701,11 +705,11 @@
             this.btnHelp.ColorContrastOnClick = 45;
             this.btnHelp.ColorContrastOnHover = 45;
             this.btnHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges8.BottomLeft = true;
-            borderEdges8.BottomRight = true;
-            borderEdges8.TopLeft = true;
-            borderEdges8.TopRight = true;
-            this.btnHelp.CustomizableEdges = borderEdges8;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.btnHelp.CustomizableEdges = borderEdges2;
             this.btnHelp.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnHelp.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnHelp.DisabledFillColor = System.Drawing.Color.Empty;
@@ -978,24 +982,6 @@
             this.btnForward.ZoomSpeed = 10;
             this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
             // 
-            // volumeControl2
-            // 
-            this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeControl2.BackColor = System.Drawing.Color.Black;
-            this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
-            this.volumeControl2.Location = new System.Drawing.Point(536, 24);
-            this.volumeControl2.Max = 100;
-            this.volumeControl2.Min = 0;
-            this.volumeControl2.Name = "volumeControl2";
-            this.volumeControl2.Size = new System.Drawing.Size(273, 17);
-            this.volumeControl2.TabIndex = 10;
-            this.bunifuToolTip1.SetToolTip(this.volumeControl2, "");
-            this.bunifuToolTip1.SetToolTipIcon(this.volumeControl2, null);
-            this.bunifuToolTip1.SetToolTipTitle(this.volumeControl2, "");
-            this.volumeControl2.Value = 100;
-            this.volumeControl2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.volumeControl2_MouseMove);
-            // 
             // lblVolume
             // 
             this.lblVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1003,7 +989,7 @@
             this.lblVolume.AutoSize = true;
             this.lblVolume.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVolume.ForeColor = System.Drawing.Color.White;
-            this.lblVolume.Location = new System.Drawing.Point(573, 7);
+            this.lblVolume.Location = new System.Drawing.Point(593, 7);
             this.lblVolume.Name = "lblVolume";
             this.lblVolume.Size = new System.Drawing.Size(83, 15);
             this.lblVolume.TabIndex = 11;
@@ -1082,6 +1068,24 @@
             this.timer2.Enabled = true;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // volumeControl2
+            // 
+            this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeControl2.BackColor = System.Drawing.Color.Black;
+            this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
+            this.volumeControl2.Location = new System.Drawing.Point(556, 24);
+            this.volumeControl2.Max = 100;
+            this.volumeControl2.Min = 0;
+            this.volumeControl2.Name = "volumeControl2";
+            this.volumeControl2.Size = new System.Drawing.Size(273, 17);
+            this.volumeControl2.TabIndex = 10;
+            this.bunifuToolTip1.SetToolTip(this.volumeControl2, "");
+            this.bunifuToolTip1.SetToolTipIcon(this.volumeControl2, null);
+            this.bunifuToolTip1.SetToolTipTitle(this.volumeControl2, "");
+            this.volumeControl2.Value = 100;
+            this.volumeControl2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.volumeControl2_MouseMove);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1108,6 +1112,9 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.panelHeader.ResumeLayout(false);
