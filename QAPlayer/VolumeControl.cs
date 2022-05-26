@@ -20,7 +20,7 @@ namespace QAPlayer
             DoubleBuffered = true;
         }
 
-        int pb_value = 40, pb_Min = 0, pb_Max = 100;
+        int pb_value = 100, pb_Min = 0, pb_Max = 100;
 
         public int Max { get { return pb_Max; } set { pb_Max = value; Invalidate(); } }
         public int Min { get { return pb_Min; } set { pb_Min = value; Invalidate(); } }
@@ -33,20 +33,20 @@ namespace QAPlayer
 
         private void VolumeControl_Paint(object sender, PaintEventArgs e)
         {
-            int startPoint = 40;
+            int startPoint = 0;
             SolidBrush sb = new SolidBrush(Color.DimGray);
-            for (int i = 0; i < (Max * ClientSize.Width / Max - 75) / gap; i++)
+            for (int i = 0; i <= (Max * ClientSize.Width / Max - 75 / gap); i++)
             {
                 e.Graphics.FillRectangle(sb, new Rectangle(startPoint, 0, gap - 5, ClientSize.Height));
                 startPoint += gap;
             }
 
-            int buffer_point = 40;  
+            int buffer_point = 0;
             SolidBrush br = new SolidBrush(b_color);
 
-            for (int i = 0; i < (pb_value * ClientSize.Width / Max - pb_value) / gap; i++)
+            for (int i = 0; i < (pb_value * ClientSize.Width / Max - 10) / gap; i++)
             {
-                e.Graphics.FillRectangle(br, new Rectangle(buffer_point, 0, gap-2, ClientSize.Height));
+                e.Graphics.FillRectangle(br, new Rectangle(buffer_point, 0, gap - 2, ClientSize.Height));
                 buffer_point += gap;
             }
 
@@ -54,21 +54,21 @@ namespace QAPlayer
             SolidBrush thumb = new SolidBrush(Color.White);
             e.Graphics.FillRectangle(thumb, new Rectangle(buffer_point, 0, thumb_size, ClientSize.Height));
 
-            if (pb_value <= 50)
-            {
-                Image rightImg = Properties.Resources.voice_100px;
-                e.Graphics.DrawImage(rightImg, ClientSize.Width - 35, 0, ClientSize.Height, ClientSize.Height);
-            }
-            if (pb_value <= Min)
-            {
-                Image leftImg = Properties.Resources.mute_100px;
-                e.Graphics.DrawImage(leftImg, 5, 0, ClientSize.Height, ClientSize.Height);
-            }
-            if (pb_value >= 50)
-            {
-                Image rightImg = Properties.Resources.sound_100px;
-                e.Graphics.DrawImage(rightImg, ClientSize.Width - 35, 0, ClientSize.Height, ClientSize.Height);
-            }
+            //if (pb_value <= 50)
+            //{
+            //    Image rightImg = Properties.Resources.voice_100px;
+            //    e.Graphics.DrawImage(rightImg, ClientSize.Width - 35, 0, ClientSize.Height, ClientSize.Height);
+            //}
+            //if (pb_value <= Min)
+            //{
+            //    Image leftImg = Properties.Resources.mute_100px;
+            //    e.Graphics.DrawImage(leftImg, 5, 0, ClientSize.Height, ClientSize.Height);
+            //}
+            //if (pb_value >= 50)
+            //{
+            //    Image rightImg = Properties.Resources.sound_100px;
+            //    e.Graphics.DrawImage(rightImg, ClientSize.Width - 35, 0, ClientSize.Height, ClientSize.Height);
+            //}
         }
 
         bool mouse = false;

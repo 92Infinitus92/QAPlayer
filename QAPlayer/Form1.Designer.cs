@@ -64,7 +64,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTotalTime2 = new System.Windows.Forms.Label();
             this.lblTime2 = new System.Windows.Forms.Label();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.volumeControl2 = new QAPlayer.VolumeControl();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -919,7 +918,7 @@
             this.btnPlay.ErrorImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.ErrorImage")));
             this.btnPlay.FadeWhenInactive = false;
             this.btnPlay.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.btnPlay.Image = global::QAPlayer.Properties.Resources.pause_30px;
+            this.btnPlay.Image = global::QAPlayer.Properties.Resources.play_30px;
             this.btnPlay.ImageActive = null;
             this.btnPlay.ImageLocation = null;
             this.btnPlay.ImageMargin = 20;
@@ -990,7 +989,7 @@
             this.lblVolume.AutoSize = true;
             this.lblVolume.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVolume.ForeColor = System.Drawing.Color.White;
-            this.lblVolume.Location = new System.Drawing.Point(593, 7);
+            this.lblVolume.Location = new System.Drawing.Point(583, 7);
             this.lblVolume.Name = "lblVolume";
             this.lblVolume.Size = new System.Drawing.Size(83, 15);
             this.lblVolume.TabIndex = 11;
@@ -1004,9 +1003,11 @@
             this.trbPlaySpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trbPlaySpeed.Location = new System.Drawing.Point(242, 28);
+            this.trbPlaySpeed.LargeChange = 1;
+            this.trbPlaySpeed.Location = new System.Drawing.Point(256, 23);
             this.trbPlaySpeed.Name = "trbPlaySpeed";
-            this.trbPlaySpeed.Size = new System.Drawing.Size(211, 45);
+            this.trbPlaySpeed.Size = new System.Drawing.Size(197, 45);
+            this.trbPlaySpeed.SmallChange = 0;
             this.trbPlaySpeed.TabIndex = 8;
             this.trbPlaySpeed.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.bunifuToolTip1.SetToolTip(this.trbPlaySpeed, "");
@@ -1044,9 +1045,9 @@
             // 
             this.lblTotalTime2.BackColor = System.Drawing.Color.Black;
             this.lblTotalTime2.ForeColor = System.Drawing.Color.White;
-            this.lblTotalTime2.Location = new System.Drawing.Point(509, 25);
+            this.lblTotalTime2.Location = new System.Drawing.Point(490, 31);
             this.lblTotalTime2.Name = "lblTotalTime2";
-            this.lblTotalTime2.Size = new System.Drawing.Size(40, 22);
+            this.lblTotalTime2.Size = new System.Drawing.Size(54, 22);
             this.lblTotalTime2.TabIndex = 14;
             this.bunifuToolTip1.SetToolTip(this.lblTotalTime2, "");
             this.bunifuToolTip1.SetToolTipIcon(this.lblTotalTime2, null);
@@ -1056,7 +1057,7 @@
             // 
             this.lblTime2.BackColor = System.Drawing.Color.Black;
             this.lblTime2.ForeColor = System.Drawing.Color.White;
-            this.lblTime2.Location = new System.Drawing.Point(163, 25);
+            this.lblTime2.Location = new System.Drawing.Point(175, 31);
             this.lblTime2.Name = "lblTime2";
             this.lblTime2.Size = new System.Drawing.Size(51, 22);
             this.lblTime2.TabIndex = 13;
@@ -1064,22 +1065,17 @@
             this.bunifuToolTip1.SetToolTipIcon(this.lblTime2, null);
             this.bunifuToolTip1.SetToolTipTitle(this.lblTime2, "");
             // 
-            // timer2
-            // 
-            this.timer2.Enabled = true;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
             // volumeControl2
             // 
             this.volumeControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.volumeControl2.BackColor = System.Drawing.Color.Black;
             this.volumeControl2.Bar_color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(47)))), ((int)(((byte)(118)))));
-            this.volumeControl2.Location = new System.Drawing.Point(556, 24);
+            this.volumeControl2.Location = new System.Drawing.Point(586, 25);
             this.volumeControl2.Max = 100;
             this.volumeControl2.Min = 0;
             this.volumeControl2.Name = "volumeControl2";
-            this.volumeControl2.Size = new System.Drawing.Size(273, 17);
+            this.volumeControl2.Size = new System.Drawing.Size(228, 17);
             this.volumeControl2.TabIndex = 10;
             this.bunifuToolTip1.SetToolTip(this.volumeControl2, "");
             this.bunifuToolTip1.SetToolTipIcon(this.volumeControl2, null);
@@ -1134,7 +1130,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Timer timer1;
         private Bunifu.UI.WinForms.BunifuToolTip bunifuToolTip1;
-        private System.Windows.Forms.Timer timer2;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnAddFiles;
         private System.Windows.Forms.ListBox listFile;
@@ -1151,7 +1146,6 @@
         private Bunifu.UI.WinForms.BunifuLabel lblTotalTime;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TrackBar trbPlaySpeed;
         private System.Windows.Forms.Label lblVolume;
         private VolumeControl volumeControl2;
         private Bunifu.UI.WinForms.BunifuImageButton btnForward;
@@ -1162,6 +1156,7 @@
         private System.Windows.Forms.Label lblTotalTime2;
         private System.Windows.Forms.Label lblTitle;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel3;
+        private System.Windows.Forms.TrackBar trbPlaySpeed;
     }
 }
 

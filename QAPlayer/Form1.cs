@@ -187,12 +187,6 @@ namespace QAPlayer
             player.Ctlcontrols.play();
         }
 
-        //timer for the volume bar
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            lblVolume.Text = "Volume: " + volumeControl2.Value.ToString() + "%";
-        }
-
         //mouse move and label of the volume bar
         private void volumeControl2_MouseMove(object sender, MouseEventArgs e)
         {
@@ -299,7 +293,13 @@ namespace QAPlayer
                 if (volumeControl2.Value <= 90)
                 {
                     player.settings.volume += 10;
+                    volumeControl2.Value += 10;
                     lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                }
+                else
+                {
+                    volumeControl2.Value = 100;
+                    lblVolume.Text = "Volume: 100%";
                 }
             }
 
@@ -308,7 +308,13 @@ namespace QAPlayer
                 if (volumeControl2.Value >= 10)
                 {
                     player.settings.volume -= 10;
+                    volumeControl2.Value -= 10;
                     lblVolume.Text = "Volume: " + player.settings.volume.ToString() + "%";
+                }
+                else
+                {
+                    volumeControl2.Value = 0;
+                    lblVolume.Text = "Volume: 0%";
                 }
             }
         }
@@ -394,6 +400,16 @@ namespace QAPlayer
             {
                 this.Left = Cursor.Position.X - diffPoint.X;
                 this.Top = Cursor.Position.Y - diffPoint.Y;
+            }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style |= 0x20000;
+                return cp;
             }
         }
     }
