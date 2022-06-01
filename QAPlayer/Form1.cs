@@ -63,6 +63,7 @@ namespace QAPlayer
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var file = (string[])e.Data.GetData(DataFormats.FileDrop);
+                btnPlay.Image = Properties.Resources.pause_30px;
                 string URL = file[0];
                 this.player.URL = URL;
                 startTime = DateTime.Now;
@@ -88,6 +89,7 @@ namespace QAPlayer
             if (result == DialogResult.OK)
             {
                 player.URL = openFileDialog1.FileName;
+                btnPlay.Image = Properties.Resources.pause_30px;
                 startTime = DateTime.Now;
             }
         }
