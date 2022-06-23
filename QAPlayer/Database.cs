@@ -36,6 +36,8 @@ namespace QAPlayer
                 cmd.Parameters.AddWithValue("@elapsedTime", elapsedTime);
                 cmd.Parameters.AddWithValue("@date", date);
                 cmd.ExecuteNonQuery();
+                cnn.Close();
+                cnn.Dispose();
             }
         }
     }
