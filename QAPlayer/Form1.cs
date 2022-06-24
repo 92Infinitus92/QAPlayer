@@ -402,12 +402,10 @@ namespace QAPlayer
         Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _); } }
         Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
 
-        int count = 0;
 
         private void slider_MouseMove(object sender, MouseEventArgs e)
         {
-            count++;
-            if (isPlaying)
+            if (player.playState == WMPPlayState.wmppsPlaying || player.playState == WMPPlayState.wmppsPaused)
             {
                 double mediaLen = player.currentMedia.duration;
                 var pos = slider.PointToClient(Cursor.Position);
@@ -415,6 +413,10 @@ namespace QAPlayer
                 int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
                 var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
                 bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+            }
+            else
+            {
+                bunifuToolTip2.SetToolTip(slider, "Please add media");
             }
         }
 
