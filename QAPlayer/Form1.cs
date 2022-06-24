@@ -41,6 +41,10 @@ namespace QAPlayer
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.MinimumSize = new Size(737, 347);
 
             //allows drag and drop to the form
             this.AllowDrop = true;
@@ -184,9 +188,20 @@ namespace QAPlayer
         //btn skip 5 seconds
         private void btnForward_Click(object sender, EventArgs e)
         {
+            btnPlay.Image = Properties.Resources.pause_30px;
             player.Ctlcontrols.pause();
             player.Ctlcontrols.currentPosition += 5;
             player.Ctlcontrols.play();
+            btnPlay.Image = Properties.Resources.pause_30px;
+        }
+
+        //btn rewinds 5 seconds
+        private void btnBackward_Click(object sender, EventArgs e)
+        {
+            player.Ctlcontrols.pause();
+            player.Ctlcontrols.currentPosition -= 5;
+            player.Ctlcontrols.play();
+            btnPlay.Image = Properties.Resources.pause_30px;
         }
 
         //mouse move and label of the volume bar
@@ -208,14 +223,6 @@ namespace QAPlayer
             player.Ctlcontrols.currentPosition = slider.Value;
         }
 
-        //btn rewinds 5 seconds
-        private void btnBackward_Click(object sender, EventArgs e)
-        {
-            player.Ctlcontrols.pause();
-            player.Ctlcontrols.currentPosition -= 5;
-            player.Ctlcontrols.play();
-        }
-
         //when spacebar or enter is pressed the playstate is changed the play or pause depending from the previous state
         private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -232,7 +239,7 @@ namespace QAPlayer
             }
         }
 
-        //slider for changing the platSpeed
+        //slider for changing the playSpeed
         private void trbPlaySpeed_ValueChanged(object sender, EventArgs e)
         {
             switch (trbPlaySpeed.Value)
@@ -281,6 +288,7 @@ namespace QAPlayer
                 player.Ctlcontrols.pause();
                 player.Ctlcontrols.currentPosition -= 5;
                 player.Ctlcontrols.play();
+                btnPlay.Image = Properties.Resources.pause_30px;
             }
 
             if (e.KeyCode == Keys.Right)
@@ -288,6 +296,7 @@ namespace QAPlayer
                 player.Ctlcontrols.pause();
                 player.Ctlcontrols.currentPosition += 5;
                 player.Ctlcontrols.play();
+                btnPlay.Image = Properties.Resources.pause_30px;
             }
 
             if (e.KeyCode == Keys.Up)
@@ -339,10 +348,18 @@ namespace QAPlayer
             }
         }
 
-        private void slider_MouseHover(object sender, EventArgs e)
-        {
-
-        }
+        //private void slider_MouseHover(object sender, EventArgs e)
+        //{
+        //    if (isPlaying)
+        //    {
+        //        double mediaLen = player.currentMedia.duration;
+        //        var pos = slider.PointToClient(Cursor.Position);
+        //        double percentageOfPointer = (pos.X) / 3.7;
+        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+        //    }
+        //}
 
         public string VersionLabel
         {
@@ -362,57 +379,119 @@ namespace QAPlayer
         }
 
 
-        //draggable form and header
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        protected override void OnPaint(PaintEventArgs e) // you can safely omit this method if you want
         {
-            diffPoint.X = Cursor.Position.X - this.Left;
-            diffPoint.Y = Cursor.Position.Y - this.Top;
-            mouseDown = true;
+            e.Graphics.FillRectangle(Brushes.Transparent, Top);
+            e.Graphics.FillRectangle(Brushes.Transparent, Left);
+            e.Graphics.FillRectangle(Brushes.Transparent, Right);
+            e.Graphics.FillRectangle(Brushes.Transparent, Bottom);
         }
 
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
+        private const int
+            HTLEFT = 10,
+            HTRIGHT = 11,
+            HTTOP = 12,
+            HTTOPLEFT = 13,
+            HTTOPRIGHT = 14,
+            HTBOTTOM = 15,
+            HTBOTTOMLEFT = 16,
+            HTBOTTOMRIGHT = 17;
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        const int _ = 10; // you can rename this variable if you like
+
+        Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _); } }
+        Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
+
+        int count = 0;
+
+        private void slider_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseDown)
+            count++;
+            if (isPlaying)
             {
-                this.Left = Cursor.Position.X - diffPoint.X;
-                this.Top = Cursor.Position.Y - diffPoint.Y;
+                double mediaLen = player.currentMedia.duration;
+                var pos = slider.PointToClient(Cursor.Position);
+                double percentageOfPointer = (pos.X) / 3.7;
+                int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+                var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+                bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
             }
         }
 
-        private void panelHeader_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
+        Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _, this.ClientSize.Width, _); } }
+        Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _, 0, _, this.ClientSize.Height); } }
 
-        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
-        {
-            diffPoint.X = Cursor.Position.X - this.Left;
-            diffPoint.Y = Cursor.Position.Y - this.Top;
-            mouseDown = true;
-        }
+        Rectangle TopLeft { get { return new Rectangle(0, 0, _, _); } }
+        Rectangle TopRight { get { return new Rectangle(this.ClientSize.Width - _, 0, _, _); } }
+        Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - _, _, _); } }
+        Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _, this.ClientSize.Height - _, _, _); } }
 
-        private void panelHeader_MouseMove(object sender, MouseEventArgs e)
+
+        protected override void WndProc(ref Message message)
         {
-            if (mouseDown)
+            base.WndProc(ref message);
+
+            if (message.Msg == 0x84) // WM_NCHITTEST
             {
-                this.Left = Cursor.Position.X - diffPoint.X;
-                this.Top = Cursor.Position.Y - diffPoint.Y;
-            }
-        }
+                var cursor = this.PointToClient(Cursor.Position);
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.Style |= 0x20000;
-                return cp;
+                if (TopLeft.Contains(cursor)) message.Result = (IntPtr)HTTOPLEFT;
+                else if (TopRight.Contains(cursor)) message.Result = (IntPtr)HTTOPRIGHT;
+                else if (BottomLeft.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMLEFT;
+                else if (BottomRight.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMRIGHT;
+
+                else if (Top.Contains(cursor)) message.Result = (IntPtr)HTTOP;
+                else if (Left.Contains(cursor)) message.Result = (IntPtr)HTLEFT;
+                else if (Right.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
+                else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
             }
         }
     }
+
+
+    //draggable form and header
+    //private void Form1_MouseDown(object sender, MouseEventArgs e)
+    //{
+    //    diffPoint.X = Cursor.Position.X - this.Left;
+    //    diffPoint.Y = Cursor.Position.Y - this.Top;
+    //    mouseDown = true;
+    //}
+
+    //private void Form1_MouseUp(object sender, MouseEventArgs e)
+    //{
+    //    mouseDown = false;
+    //}
+
+    //private void Form1_MouseMove(object sender, MouseEventArgs e)
+    //{
+    //    if (mouseDown)
+    //    {
+    //        this.Left = Cursor.Position.X - diffPoint.X;
+    //        this.Top = Cursor.Position.Y - diffPoint.Y;
+    //    }
+    //}
+
+    //private void panelHeader_MouseUp(object sender, MouseEventArgs e)
+    //{
+    //    mouseDown = false;
+    //}
+
+    //private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+    //{
+    //    diffPoint.X = Cursor.Position.X - this.Left;
+    //    diffPoint.Y = Cursor.Position.Y - this.Top;
+    //    mouseDown = true;
+    //}
+
+    //private void panelHeader_MouseMove(object sender, MouseEventArgs e)
+    //{
+    //    if (mouseDown)
+    //    {
+    //        this.Left = Cursor.Position.X - diffPoint.X;
+    //        this.Top = Cursor.Position.Y - diffPoint.Y;
+    //    }
+    //}
+
+
 }
+
