@@ -429,6 +429,8 @@ namespace QAPlayer
         Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _, this.ClientSize.Height - _, _, _); } }
 
 
+
+        //ability to minimize the app from the taskbar
         protected override void WndProc(ref Message message)
         {
             base.WndProc(ref message);
@@ -448,7 +450,22 @@ namespace QAPlayer
                 else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
             }
         }
+
+
+        const int WS_MINIMIZEBOX = 0x20000;
+        const int CS_DBLCLKS = 0x8;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style |= WS_MINIMIZEBOX;
+                cp.ClassStyle |= CS_DBLCLKS;
+                return cp;
+            }
+        }
     }
+
 
 
     //draggable form and header
