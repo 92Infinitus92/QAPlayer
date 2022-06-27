@@ -403,23 +403,26 @@ namespace QAPlayer
         Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
 
 
-        private void slider_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (player.playState == WMPPlayState.wmppsPlaying || player.playState == WMPPlayState.wmppsPaused)
-            {
-                double mediaLen = player.currentMedia.duration;
-                var pos = slider.PointToClient(Cursor.Position);
-                double percentageOfPointer = (pos.X) / 3.7;
-                int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
-                var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
-                bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
-            }
-            else
-            {
-                bunifuToolTip2.SetToolTip(slider, "Please add media");
-            }
-        }
 
+        //hover timestamp on the slider - needs to be worked on it
+        //private void slider_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (player.playState == WMPPlayState.wmppsPlaying || player.playState == WMPPlayState.wmppsPaused)
+        //    {
+        //        double mediaLen = player.currentMedia.duration;
+        //        var pos = slider.PointToClient(Cursor.Position);
+        //        double percentageOfPointer = (pos.X) / 3.7;
+        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+        //    }
+        //    else
+        //    {
+        //        bunifuToolTip2.SetToolTip(slider, "Please add media");
+        //    }
+        //}
+
+        //ability to resize the app
         Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _, this.ClientSize.Width, _); } }
         Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _, 0, _, this.ClientSize.Height); } }
 
@@ -429,8 +432,6 @@ namespace QAPlayer
         Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _, this.ClientSize.Height - _, _, _); } }
 
 
-
-        //ability to minimize the app from the taskbar
         protected override void WndProc(ref Message message)
         {
             base.WndProc(ref message);
@@ -452,6 +453,7 @@ namespace QAPlayer
         }
 
 
+        //ability to minimize the app from the taskbar
         const int WS_MINIMIZEBOX = 0x20000;
         const int CS_DBLCLKS = 0x8;
         protected override CreateParams CreateParams
