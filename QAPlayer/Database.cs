@@ -9,11 +9,10 @@ namespace QAPlayer
 {
     internal class Database
     {
-        public string connetionString = @Environment.GetEnvironmentVariable("connectionString");
+        public string connetionString = @Environment.GetEnvironmentVariable("connectionString2");
 
         internal SqlConnection Connect()
         {
-            
             try
             {
                 SqlConnection cnn;

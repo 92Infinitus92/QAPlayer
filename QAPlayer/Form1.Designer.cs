@@ -719,7 +719,7 @@
             this.bunifuToolTip2.SetToolTipIcon(this.slider, null);
             this.bunifuToolTip2.SetToolTipTitle(this.slider, "");
             this.slider.Value = 0;
-            //this.slider.MouseMove += new System.Windows.Forms.MouseEventHandler(this.slider_MouseMove);
+            this.slider.MouseHover += new System.EventHandler(this.slider_MouseHover);
             this.slider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.slider_MouseUp);
             // 
             // btnBackward

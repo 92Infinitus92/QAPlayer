@@ -26,10 +26,5 @@ namespace QAPlayer
         {
             this.Close();
         }
-
-        private void lblBoxMessage_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

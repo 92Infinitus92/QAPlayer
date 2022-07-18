@@ -348,19 +348,6 @@ namespace QAPlayer
             }
         }
 
-        //private void slider_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (isPlaying)
-        //    {
-        //        double mediaLen = player.currentMedia.duration;
-        //        var pos = slider.PointToClient(Cursor.Position);
-        //        double percentageOfPointer = (pos.X) / 3.7;
-        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
-        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
-        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
-        //    }
-        //}
-
         public string VersionLabel
         {
             get
@@ -379,6 +366,42 @@ namespace QAPlayer
         }
 
 
+        //hover timestamp on the slider - needs to be worked on it
+
+        //private void slider_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (player.playState == WMPPlayState.wmppsPlaying || player.playState == WMPPlayState.wmppsPaused)
+        //    {
+        //        double mediaLen = player.currentMedia.duration;
+        //        var pos = slider.PointToClient(Cursor.Position);
+        //        double percentageOfPointer = (pos.X) / 3.7;
+        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+        //    }
+        //    else
+        //    {
+        //        bunifuToolTip2.SetToolTip(slider, "Please add media");
+        //    }
+        //}
+
+        private void slider_MouseHover(object sender, EventArgs e)
+        {
+            if (isPlaying)
+            {
+                double mediaLen = player.currentMedia.duration;
+                var pos = slider.PointToClient(Cursor.Position);
+                double percentageOfPointer = (pos.X) / 3.7;
+                int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+                var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+                bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+            }
+        }
+
+
+
+
+        //ability to resize the app
         protected override void OnPaint(PaintEventArgs e) // you can safely omit this method if you want
         {
             e.Graphics.FillRectangle(Brushes.Transparent, Top);
@@ -401,32 +424,10 @@ namespace QAPlayer
 
         Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _); } }
         Rectangle Left { get { return new Rectangle(0, 0, _, this.ClientSize.Height); } }
-
-
-
-        //hover timestamp on the slider - needs to be worked on it
-        //private void slider_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (player.playState == WMPPlayState.wmppsPlaying || player.playState == WMPPlayState.wmppsPaused)
-        //    {
-        //        double mediaLen = player.currentMedia.duration;
-        //        var pos = slider.PointToClient(Cursor.Position);
-        //        double percentageOfPointer = (pos.X) / 3.7;
-        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
-        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
-        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
-        //    }
-        //    else
-        //    {
-        //        bunifuToolTip2.SetToolTip(slider, "Please add media");
-        //    }
-        //}
-
-        //ability to resize the app
         Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _, this.ClientSize.Width, _); } }
         Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _, 0, _, this.ClientSize.Height); } }
-
         Rectangle TopLeft { get { return new Rectangle(0, 0, _, _); } }
+
         Rectangle TopRight { get { return new Rectangle(this.ClientSize.Width - _, 0, _, _); } }
         Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - _, _, _); } }
         Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _, this.ClientSize.Height - _, _, _); } }
@@ -467,52 +468,5 @@ namespace QAPlayer
             }
         }
     }
-
-
-
-    //draggable form and header
-    //private void Form1_MouseDown(object sender, MouseEventArgs e)
-    //{
-    //    diffPoint.X = Cursor.Position.X - this.Left;
-    //    diffPoint.Y = Cursor.Position.Y - this.Top;
-    //    mouseDown = true;
-    //}
-
-    //private void Form1_MouseUp(object sender, MouseEventArgs e)
-    //{
-    //    mouseDown = false;
-    //}
-
-    //private void Form1_MouseMove(object sender, MouseEventArgs e)
-    //{
-    //    if (mouseDown)
-    //    {
-    //        this.Left = Cursor.Position.X - diffPoint.X;
-    //        this.Top = Cursor.Position.Y - diffPoint.Y;
-    //    }
-    //}
-
-    //private void panelHeader_MouseUp(object sender, MouseEventArgs e)
-    //{
-    //    mouseDown = false;
-    //}
-
-    //private void panelHeader_MouseDown(object sender, MouseEventArgs e)
-    //{
-    //    diffPoint.X = Cursor.Position.X - this.Left;
-    //    diffPoint.Y = Cursor.Position.Y - this.Top;
-    //    mouseDown = true;
-    //}
-
-    //private void panelHeader_MouseMove(object sender, MouseEventArgs e)
-    //{
-    //    if (mouseDown)
-    //    {
-    //        this.Left = Cursor.Position.X - diffPoint.X;
-    //        this.Top = Cursor.Position.Y - diffPoint.Y;
-    //    }
-    //}
-
-
 }
 
