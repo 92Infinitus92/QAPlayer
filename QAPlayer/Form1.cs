@@ -396,6 +396,7 @@ namespace QAPlayer
         //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
         //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
         //    }
+        // we have to find a new way of implementing it
         //}
 
 
