@@ -385,18 +385,18 @@ namespace QAPlayer
         //    }
         //}
 
-        private void slider_MouseHover(object sender, EventArgs e)
-        {
-            if (isPlaying)
-            {
-                double mediaLen = player.currentMedia.duration;
-                var pos = slider.PointToClient(Cursor.Position);
-                double percentageOfPointer = (pos.X) / 3.7;
-                int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
-                var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
-                bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
-            }
-        }
+        //private void slider_MouseHover(object sender, EventArgs e)
+        //{
+        //    if (isPlaying)
+        //    {
+        //        double mediaLen = player.currentMedia.duration;
+        //        var pos = slider.PointToClient(Cursor.Position);
+        //        double percentageOfPointer = (pos.X) / 3.7;
+        //        int resultInSeconds = (int)((mediaLen * percentageOfPointer) / 100);
+        //        var resultInTime = TimeSpan.FromSeconds(resultInSeconds);
+        //        bunifuToolTip2.SetToolTip(slider, resultInTime.ToString());
+        //    }
+        //}
 
 
 
